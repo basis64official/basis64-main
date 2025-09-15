@@ -4,6 +4,7 @@ import { DarkModeToggle } from "../ui/DarkModeToggle";
 // import GoogleLogin from "../ui/GoogleLogin";
 import { Button } from "../ui";
 import useLoginModal from "../../state/useLoginModal";
+import { AuthManager } from "../../utils/AuthManager";
 
 const UserProfile = () => {
     const auth = useAuth();
@@ -59,7 +60,7 @@ const UserProfile = () => {
                     <div className="px-4 py-3 grid space-y-4" role="none">
                         <DarkModeToggle />
                         {auth.user ? (
-                            <Button variant="red">Logout</Button>
+                            <Button variant="red" onClick={() => AuthManager.logOut()}>Logout</Button>
                         ) : ''}
                     </div>
                 </div>

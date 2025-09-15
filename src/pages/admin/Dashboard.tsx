@@ -1,8 +1,8 @@
-// import { useState } from "react";
 
-export default function Pricing() {
-  return (
-    <div className="container p-4 mx-auto">
+export default function Dashboard() {
+	return (
+		<>
+        <div className="container p-4 mx-auto">
       <a
         href="#"
         className="block p-6 bg-white border border-gray-200 rounded-xs hover:bg-gray-100 dark:bg-neutral-800 dark:border-gray-700 dark:hover:bg-gray-700"
@@ -15,9 +15,10 @@ export default function Pricing() {
           data-i18n="pages.developer.description"
         >
           Kami belum membuat fitur ini, fitur opsi pengembang yang memungkinkan
-          penggunaan API akan dirilis pada tanggal 30 Oktober 2025.
+          penggunaan API akan dirilis pada tanggal 30 Juni 2025.
         </p>
       </a>
     </div>
-  );
+		</>
+	);
 }

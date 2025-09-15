@@ -1,14 +1,26 @@
 import { apiFetch } from "../api/apiFetch";
 import useAuth from "../state/useAuth";
+import useInfo from "../state/useInfo";
 import { decodeJWT } from "../utils/jwtDecode";
 
 export class CookieManager {
+  static async getVisitorsToday() {
+    const { setValue } = useInfo.getState();
+    const status = await apiFetch("/session/get-visitors-today");
+    if (!status) {
+      return;
+    }
+    const json = await status.json();
+    console.log(json);
+    setValue(json.visitors, 70, 800);
+  }
   static async check(): Promise<boolean> {
     let sessionId = this.getCookie("session_id");
     let publicKeyPEM = this.getCookie("public_key_pem");
     const cookieExpire = this.getCookieExpire("session_id");
     const now = Date.now();
     const { login } = useAuth.getState();
+    await this.getVisitorsToday();
 
     // Kalau cookie valid, tetap verify ke server
     try {
@@ -22,7 +34,6 @@ export class CookieManager {
         });
         const verifyResult = await verifyResponse.json();
         if (verifyResult.ok) {
-                  console.log(verifyResult);
           if (verifyResult.accessToken) {
             const decodedJwt = decodeJWT(verifyResult.accessToken);
             this.setCookie(
@@ -40,7 +51,13 @@ export class CookieManager {
         }
       }
       // Kalau verify gagal → ambil session baru
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log("An unknown error occurred:", error);
+      }
+    }
 
     console.log("creating new cookie...");
     // Cookie invalid / verify gagal → ambil session baru
@@ -50,6 +67,8 @@ export class CookieManager {
     const jsonResult = await response.json();
     sessionId = jsonResult.sessionId;
     publicKeyPEM = jsonResult.publicKey;
+
+    await this.getVisitorsToday();
 
     // Simpan cookie baru
     this.setCookie("session_id", sessionId!, jsonResult.expiredAt);

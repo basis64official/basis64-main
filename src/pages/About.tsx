@@ -1,5 +1,5 @@
 import Logo from '../assets/img/logo.png';
-import bgImage from '../assets/img/bg-masthead.jpg';
+import bgImage from '../assets/img/header.webp';
 
 export default function About() {
 	return (

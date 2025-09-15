@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui";
 import useAuth from "../../state/useAuth";
 import useLoginModal from "../../state/useLoginModal";
+import { AuthManager } from "../../utils/AuthManager";
 
 type SidebarProps = {
   sidebarOpen: boolean;
@@ -30,7 +31,16 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     if (isMobile()) setSidebarOpen(false);
   };
 
-  const menuItems = [
+  const menuItems = location.pathname.includes("admin") ? [
+    { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
+    { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
+    { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
+    { id: "inbox", label: "Kotak masuk", icon: "bi-envelope", to: "/admin/database" },
+    { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/database" },
+    { id: "blacklist", label: "Blacklist", icon: "bi-ban", to: "/admin/database" },
+    { id: "security", label: "Keamanan", icon: "bi-key", to: "/admin/database" },
+
+  ] : [
     { id: "home", label: "Halaman awal", icon: "bi-house", to: "/" },
     { id: "dev", label: "Opsi pengembang", icon: "bi-braces", to: "/developer" },
     { id: "pricing", label: "Harga produk", icon: "bi-tags", to: "/pricing" },
@@ -57,8 +67,8 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                   to={to}
                   onClick={handleMenuClick}
                   className={`flex items-center p-2 rounded-sm font-medium transition duration-150 ${isActive
-                      ? "font-semibold bg-blue-100 border border-blue-600 text-blue-600 dark:bg-blue-900 dark:text-white"
-                      : "text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+                    ? "font-semibold bg-blue-100 border border-blue-600 text-blue-600 dark:bg-blue-900 dark:text-white"
+                    : "text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
                     }`}
                 >
                   <i
@@ -78,7 +88,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
           <p className="text-gray-500 text-md text-center mb-4">
             {auth.name}
           </p>
-          <Button as="button" variant="red" className="w-full">Logout</Button>
+          <Button as="button" variant="red" className="w-full" onClick={() => AuthManager.logOut()}>Logout</Button>
         </div>) : (
           <div className="space-y-2 mt-4">
             <p className="font-semibold text-gray-600 text-base text-center">Belum login?</p>
