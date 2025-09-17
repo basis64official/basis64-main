@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Modal } from "../../components/ui";
+import { Button } from "../../components/ui";
 import { CookieManager } from "../../utils/CookieManager";
 import { useNavigate } from "react-router-dom";
 import useSecure from "../../state/useSecure";
@@ -8,26 +8,22 @@ import { apiFetch } from "../../api/apiFetch";
 import { Utils } from "../../utils/utils";
 
 import UserPicture from "../../assets/img/user.webp";
-import { Map } from "../../components/ui/Map";
 import useInput from "../../hooks/useInput";
 
-export default function Sessions() {
+export default function Database() {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [totalData, setTotalData] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
-    const [sessions, setSessions] = useState<any[]>([]);
-    const [mapModal, setMapModal] = useState(false);
+    const [accounts, setAccounts] = useState<any[]>([]);
     const [search, setSearch] = useInput("");
 
     const key = useSecure((state) => state.key);
     const iv = useSecure((state) => state.iv);
 
-    const navigate = useNavigate();
-
     const fetchData = async () => {
         try {
-            const response = await apiFetch(`/session/admin/list?page=${page}&limit=${limit}&search=${search}`, {
+            const response = await apiFetch(`/admin/list-accounts?page=${page}&limit=${limit}&search=${search}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,9 +40,9 @@ export default function Sessions() {
             setLimit(decrypted.limit);
             setTotalData(decrypted.total);
             setTotalPage(decrypted.totalPages);
-            setSessions(decrypted.sessions);
+            setAccounts(decrypted.accounts);
             //setSessions(JSON.parse());
-            console.log(decrypted.sessions[1]);
+            console.log(decrypted.accounts[1]);
             //console.log({ key, iv });
             console.log(await AES.decrypt(ciphertext, key!, iv!));
         } catch (e) {
@@ -70,17 +66,6 @@ export default function Sessions() {
     const first = () => setPage(1);
     const last = () => setPage(totalPage);
 
-
-    const [latitude, setLatitude] = useState(-6.200000);
-    const [longitude, setLongitude] = useState(106.816666);
-
-    const showMapModal = (lat: number, lng: number) => {
-        setLatitude(lat);
-        setLongitude(lng);
-        setMapModal(true);
-    };
-    const hideMapModal = () => setMapModal(false);
-
     useEffect(() => {
         if (!key || !iv) return; // tunggu key & iv tersedia
         // console.log("Key and IV are set:", { key, iv });
@@ -89,9 +74,6 @@ export default function Sessions() {
     }, [key, iv, page, limit]);
     return (
         <div className="container p-4 mx-auto">
-            <Modal open={mapModal} onCancel={hideMapModal} onConfirm={hideMapModal} title="Geolocation Map" icon="geo-alt" className="w-5xl">
-                <Map lat={latitude} lng={longitude} zoom={10} className="w-full h-120 border border-gray-400 rounded-sm" />
-            </Modal>
             <div className="bg-white border border-gray-300 dark:bg-neutral-900 dark:border-neutral-600 p-4">
                 <div className="overflow-x-auto">
                     <div className="flex w-full items-center mx-auto mb-4 p-2">
@@ -157,71 +139,38 @@ export default function Sessions() {
                             <tr>
                                 <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">No</th>
                                 <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">Picture</th>
-                                <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">Session</th>
-                                <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">Device</th>
+                                <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">Detail</th>
                                 <th className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-900 dark:text-gray-100">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {sessions.map((session, index) => (
-                                <tr key={session.sessionId} className="bg-white dark:bg-neutral-800">
+                            {accounts.map((account, index) => (
+                                <tr className="bg-white dark:bg-neutral-800">
                                     <td className="border border-gray-300 dark:border-neutral-600 px-4 py-2 text-gray-800 dark:text-gray-100">
                                         {((page - 1) * limit) + (index + 1)}
                                     </td>
                                     <td className="border border-gray-300 dark:border-neutral-600 px-4 py-2">
                                         <img
-                                            src={session.data.picture ? session.data.picture : UserPicture}
+                                            src={account.picture ? account.picture : UserPicture}
                                             alt="Avatar"
                                             className="w-32 h-32 rounded-sm border border-gray-300 dark:border-neutral-600"
                                         />
                                     </td>
                                     <td className="border border-gray-300 dark:border-neutral-600 px-4 py-2">
                                         <div className="font-medium text-gray-800 dark:text-gray-100">
-                                            {session.data.name || 'Pengguna BASIS-64'}
+                                            {account.name || 'Pengguna BASIS-64'}
                                         </div>
                                         <div className="text-sm text-gray-500 dark:text-gray-400 pb-2 mb-2 border-b border-gray-300 dark:border-neutral-600">
-                                            Email: {session.data.email || 'Pengguna tidak login'}
+                                            Email: {account.email || 'Pengguna tidak login'}
                                         </div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Session ID: {session.sessionId}</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Dibuat pada: {Utils.formatTimestamp(session.data.createdAt)}</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Diubah pada: {Utils.formatTimestamp(session.data.updatedAt)}</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Kadaluarsa: {Utils.formatTimestamp(session.data.expiredAt)}</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Internal ID: {account.id}</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Google ID: {account.googleId}</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Public ID: {account.publicId}</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Dibuat pada: {Utils.formatTimestamp(account.createdAt)}</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Diubah pada: {Utils.formatTimestamp(account.updatedAt)}</div>
                                     </td>
+
                                     <td className="border border-gray-300 dark:border-neutral-600 px-4 py-2">
-                                        <div className="font-medium text-gray-500 dark:text-gray-300">Informasi Perangkat</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Alamat IP: {session.data.device.ip}</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400 pb-2 mb-2 border-b border-gray-300 dark:border-neutral-600">
-                                            Alamat IP: {session.data.device.userAgent}
-                                        </div>
-                                        <div className="font-medium text-gray-500 dark:text-gray-300">Informasi Geolokasi</div>
-                                        {session.data.device.geolocation ? (
-                                            <div className="flex flex-col gap-0 text-sm text-gray-500 dark:text-gray-400">
-                                                <div className="flex gap-2">
-                                                    <div>Lokasi: {session.data.device.geolocation.city}, {session.data.device.geolocation.region}, {session.data.device.geolocation.countryCode}</div> &middot;
-                                                    <div>Benua: {session.data.device.geolocation.continent}</div> &middot;
-                                                    <div>Kode pos: {session.data.device.geolocation.postalCode}</div>
-                                                </div>
-                                                <div className="flex gap-2">
-                                                    <div>Koordinat: {session.data.device.geolocation.latitude}, {session.data.device.geolocation.longitude}</div> &middot;
-                                                    <div>Zona waktu: {session.data.device.geolocation.timezone}</div>
-                                                </div>
-                                                <div>Autonomous System Number: {session.data.device.geolocation.asn}</div>
-                                            </div>
-                                        ) : (
-                                            <div className="text-sm text-gray-500 dark:text-gray-400">Tidak ada data geolokasi.</div>
-                                        )}
-                                    </td>
-                                    <td className="border border-gray-300 dark:border-neutral-600 px-4 py-2">
-                                        {session.data.device.geolocation ? (
-                                            <Button
-                                                variant="transparent-blue"
-                                                className="w-full mb-2"
-                                                size="sm"
-                                                onClick={() => showMapModal(session.data.device.geolocation.latitude, session.data.device.geolocation.longitude)}
-                                            >
-                                                Lihat
-                                            </Button>
-                                        ) : <></>}
                                         <Button variant="transparent-red" className="w-full" size="sm">Hapus</Button>
                                     </td>
                                 </tr>

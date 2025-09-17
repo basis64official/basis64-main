@@ -3,13 +3,13 @@ export default function Pricing() {
 	return (
 		<>
 			<div className="container p-4 mx-auto grid" id="mainLayout">
-				<div className="block p-6 mb-4 bg-white border border-gray-200 shadow-xs dark:bg-neutral-800 dark:border-gray-700 text-center">
+				<div className="block p-6 mb-4 bg-white border border-gray-200 shadow-xs dark:bg-neutral-800 dark:border-neutral-700 text-center">
 					<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" data-i18n="pages.price.contentTitle">Mulai Berlangganan!</h5>
 					<p className="font-normal text-gray-700 dark:text-gray-400" data-i18n="pages.price.contentDescription">Kamu dapat mengaktivasi akun kamu dengan cara berlangganan sesuai dengan paket yang kamu pilih.</p>
 				</div>
 				<section className="">
 					<div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-4 lg:space-y-0">
-						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-gray-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
+						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-neutral-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
 							<h3 className="mb-4 text-2xl font-semibold" data-i18n="pages.price.hematTitle">Paket Hemat</h3>
 							<p className="font-light text-gray-500 sm:text-lg dark:text-gray-400" data-i18n="pages.price.hematDescription">Aktivasi dengan harga paling terjangkau. Cocok untuk kebutuhan singkat dan uji coba fitur premium BASIS-64.</p>
 							<div className="flex justify-center items-baseline my-8">
@@ -26,7 +26,7 @@ export default function Pricing() {
 								</li>
 							</ul>
 						</div>
-						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-gray-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
+						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-neutral-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
 							<h3 className="mb-4 text-2xl font-semibold" data-i18n="pages.price.remixTitle">Paket Remix</h3>
 							<p className="font-light text-gray-500 sm:text-lg dark:text-gray-400" data-i18n="pages.price.remixDescription">Pilihan menengah untuk kamu yang butuh akses lebih lama tanpa perlu sering perpanjangan. Seimbang antara durasi dan harga.</p>
 							<div className="flex justify-center items-baseline my-8">
@@ -43,7 +43,7 @@ export default function Pricing() {
 								</li>
 							</ul>
 						</div>
-						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-gray-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
+						<div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xs border border-gray-200 shadow-xs dark:border-neutral-600 xl:p-8 dark:bg-neutral-800 dark:text-white">
 							<h3 className="mb-4 text-2xl font-semibold" data-i18n="pages.price.phoenixTitle">Paket Phoenix</h3>
 							<p className="font-light text-gray-500 sm:text-lg dark:text-gray-400" data-i18n="pages.price.phoenixDescription">Paket dengan durasi terpanjang. Ideal untuk pengguna setia yang ingin aktivasi jangka panjang dalam waktu satu tahun.</p>
 							<div className="flex justify-center items-baseline my-8">

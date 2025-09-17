@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import "./index.css";
 import { Navbar, Sidebar } from "./components/layout";
 import { pages } from "./pages";
@@ -16,17 +16,60 @@ import { apiFetch } from "./api/apiFetch";
 import useSecure from "./state/useSecure";
 import { AES } from "./crypto/aes";
 import { RSA } from "./crypto/RSA";
+import useAuth from "./state/useAuth";
+import { featuresPages } from "./pages/features";
+import { useNavStore } from "./state/useNavStore";
+import { useFeatureStore } from "./state/useFeatureStore";
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const auth = useAuth();
+  const { features, setFeatures } = useFeatureStore();
+
 
   const validPaths = pages.map((p) => p.path);
   const validAdminPaths = adminPages.map((p) => p.path);
-  const shouldHideLayout = !(validPaths.includes(location.pathname) || validAdminPaths.includes(location.pathname));
+  const validFeaturesPaths = featuresPages.map((p) => p.path);
+  const shouldHideLayout = !(validPaths.includes(location.pathname) || validAdminPaths.includes(location.pathname) || validFeaturesPaths.includes(location.pathname));
   const modal = useModal();
   const navigatonBar = useNavigationBar();
   const secure = useSecure();
+
+  const fromHome = useNavStore((s) => s.fromHome);
+  const getFeatureById = useFeatureStore((s) => s.getFeatureById);
+
+  if (!fromHome && location.pathname.startsWith('/features/')) {
+    return <Navigate to="/" replace />;
+  }
+
+  /*useEffect(() => {
+    if (!auth.user) return;
+
+    const email = auth.email;
+    const sessionId = CookieManager.getCookie("session_id"); // pastikan session_id disimpan di cookie saat login
+    if (!email || !sessionId) return;
+
+    const url = `/api/sse?email=${encodeURIComponent(email)}&sessionId=${encodeURIComponent(sessionId)}`;
+    const evtSource = new EventSource(url);
+
+    evtSource.onmessage = (event) => {
+      if (event.data === "logout") {
+        alert("Kamu logout karena login di device lain!");
+        auth.logout();
+        CookieManager.removeCookie("access_token");
+        window.location.href = "/login";
+      }
+    };
+
+    evtSource.onerror = () => {
+      evtSource.close();
+    };
+
+    return () => evtSource.close();
+  }, [auth.user, auth.email]);*/
+
 
   useEffect(() => {
     // cek session
@@ -37,22 +80,37 @@ export default function App() {
       }
       if (location.pathname.includes('admin')) {
         try {
-          secure.setKey(AES.generateKey(), AES.generateIv());
+          const secureKey = AES.generateKey();
+          const secureIv = AES.generateIv();
           const ciphertext = await RSA.encrypt(
             CookieManager.getCookie('public_key_pem') || '',
             JSON.stringify({
-              key: secure.key,
-              iv: secure.iv
+              key: secureKey,
+              iv: secureIv
             })
           )
-          await apiFetch('/admin/set-key', {
+          const response = await apiFetch('/admin/set-key', {
             method: 'POST',
             headers: { 'X-Session-ID': CookieManager.getCookie('session_id') || '' },
             body: JSON.stringify({
               ciphertext
             })
           })
-        } catch { }
+          if (!response.ok) {
+            console.log(response)
+            //navigate('/');
+            /*if (location.pathname !== '/admin/login') {
+              modal.show('info', 'Informasi', 'Akses ditolak, silakan login kembali.');
+              setTimeout(() => {
+                modal.hide();
+                window.location.href = '/admin/login';
+              }, 2000);
+            }*/
+          }
+          secure.setKey(secureKey, secureIv);
+        } catch {
+          console.log("Error, check your connection.");
+        }
       }
     };
     checkSession();
@@ -68,6 +126,26 @@ export default function App() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    fetch("https://cdn.jsdelivr.net/gh/basis64computer/public/features.json")
+      .then((res) => res.json())
+      .then((data) => setFeatures(data))
+      .catch((err) => console.error("Error loading CMS features:", err));
+  }, []);
+
+  useEffect(() => {
+    try {
+      const feature = getFeatureById(location.pathname.replace('/features/', ''));
+      console.log((feature?.isLogin || (feature?.premiumLevel ?? 0) > 0))
+      if (!auth.user && location.pathname.startsWith('/features/') && (feature?.isLogin || (feature?.premiumLevel ?? 0) > 0) && feature) {
+        console.log("forbidden");
+        navigate('/forbidden');
+      }
+    } catch (error) {
+
+    }
+  }, [location, features, auth.user]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -124,13 +202,16 @@ export default function App() {
 
       <main
         className={`flex-1 ${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"
-          } ${!shouldHideLayout ? "pt-16" : ""} bg-gray-50 dark:bg-neutral-950 transition-all duration-500`}
+          } ${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""} bg-gray-50 dark:bg-neutral-950 transition-all duration-500`}
       >
         <Routes>
           {pages.map(({ path, component: Component }) => (
             <Route key={path} path={path} element={<Component />} />
           ))}
           {adminPages.map(({ path, component: Component }) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
+          {featuresPages.map(({ path, component: Component }) => (
             <Route key={path} path={path} element={<Component />} />
           ))}
           <Route path="*" element={<NotFound />} />

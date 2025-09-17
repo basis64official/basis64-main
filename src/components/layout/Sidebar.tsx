@@ -35,10 +35,10 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
     { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
     { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
-    { id: "inbox", label: "Kotak masuk", icon: "bi-envelope", to: "/admin/database" },
-    { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/database" },
-    { id: "blacklist", label: "Blacklist", icon: "bi-ban", to: "/admin/database" },
-    { id: "security", label: "Keamanan", icon: "bi-key", to: "/admin/database" },
+    // { id: "inbox", label: "Kotak masuk", icon: "bi-envelope", to: "/admin/inbox" },
+    { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/cms" },
+    // { id: "blacklist", label: "Blacklist", icon: "bi-ban", to: "/admin/blacklist" },
+    // { id: "security", label: "Keamanan", icon: "bi-key", to: "/admin/security" },
 
   ] : [
     { id: "home", label: "Halaman awal", icon: "bi-house", to: "/" },
@@ -47,6 +47,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
     { id: "faq", label: "FAQ", icon: "bi-question-square", to: "/faq" },
     { id: "about", label: "Tentang kami", icon: "bi-info-square", to: "/about" },
+    { id: "docs", label: "Dokumentasi", icon: "bi-journals", to: "/docs" },
   ];
 
   return (
@@ -84,15 +85,15 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
 
         {/* Sticky bottom login section */}
         {auth.user ? (<div className="mt-4">
-          <p className="font-semibold text-gray-600 text-base text-center">Login sebagai</p>
-          <p className="text-gray-500 text-md text-center mb-4">
+          <p className="font-semibold text-gray-600 text-base text-center dark:text-neutral-300">Login sebagai</p>
+          <p className="text-gray-500 text-md text-center mb-4 dark:text-neutral-300">
             {auth.name}
           </p>
           <Button as="button" variant="red" className="w-full" onClick={() => AuthManager.logOut()}>Logout</Button>
         </div>) : (
           <div className="space-y-2 mt-4">
-            <p className="font-semibold text-gray-600 text-base text-center">Belum login?</p>
-            <p className="text-gray-500 text-md text-center mb-4">
+            <p className="font-semibold text-gray-600 text-base text-center dark:text-neutral-300">Belum login?</p>
+            <p className="text-gray-500 text-md text-center mb-4 dark:text-neutral-300">
               Login untuk menggunakan sebagian besar fitur di BASIS-64
             </p>
             <Button as="button" variant="blue" className="w-full" onClick={() => loginModal.show()}>Login</Button>

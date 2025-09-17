@@ -14,44 +14,34 @@ interface ModalProps {
   confirmText?: string;
   cancelText?: string;
   dangerText?: string;
+  className?: string; // Ukuran modal
+  icon?: string; // Nama ikon dari Bootstrap Icons
 }
 
 const variantStyles = {
   info: {
     bg: "bg-blue-600 hover:bg-blue-700",
-    icon: (
-      <i className="bi bi-info-square text-2xl me-2"></i>
-    ),
+    icon: "info-square",
   },
   confirm: {
     bg: "bg-blue-600 hover:bg-blue-700",
-    icon: (
-      <i className="bi bi-question-square text-2xl me-2"></i>
-    ),
+    icon: "question-square",
   },
   success: {
     bg: "bg-green-600 hover:bg-green-700",
-    icon: (
-      <i className="bi bi-check-square text-2xl me-2"></i>
-    ),
+    icon: "check-square",
   },
   error: {
     bg: "bg-red-600 hover:bg-red-700",
-    icon: (
-      <i className="bi bi-x-square text-2xl me-2"></i>
-    ),
+    icon: "x-square",
   },
   danger: {
     bg: "bg-red-600 hover:bg-red-700",
-    icon: (
-      <i className="bi bi-exclamation-triangle text-2xl me-2"></i>
-    ),
+    icon: "exclamation-triangle",
   },
   loading: {
     bg: "bg-gray-500 cursor-not-allowed",
-    icon: (
-      <i className="bi bi-arrow-clockwise text-2xl me-2"></i>
-    ),
+    icon: "arrow-clockwise",
   },
   default: {
     bg: "bg-blue-600 hover:bg-blue-700",
@@ -70,6 +60,8 @@ export const Modal: React.FC<ModalProps> = ({
   confirmText = "OK",
   cancelText = "Cancel",
   dangerText = "Delete",
+  className = "w-lg", // "sm", "md", "lg"
+  icon
 }) => {
   const [showBackdrop, setShowBackdrop] = useState(open);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
@@ -102,7 +94,8 @@ export const Modal: React.FC<ModalProps> = ({
   }, [isAnimatingIn]);
 
   const isLoading = variant === "loading";
-  const { icon } = variantStyles[variant];
+  const variantStyle = variantStyles[variant] || variantStyles["default"];
+  const iconToShow = icon !== undefined ? icon : variantStyle.icon;
 
   const handleConfirm = () => {
     if (onConfirm) onConfirm();
@@ -128,7 +121,7 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={handleCancel}
     >
       <div
-        className={`bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-sm shadow-lg max-w-lg w-full m-3 p-0 flex flex-col
+        className={`bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-sm shadow-lg ${className || 'w-lg'} m-3 p-0 flex flex-col
           transition-all duration-300
           ${
             isAnimatingIn
@@ -144,13 +137,12 @@ export const Modal: React.FC<ModalProps> = ({
             id="modal-label"
             className="font-bold text-gray-800 dark:text-white flex items-center gap-2"
           >
-            {icon}
-            {title}
-          </h3>
+            <i className={`bi-${iconToShow} text-2xl me-2`}></i>
+            {title}</h3> 
           {!isLoading && (
             <button
               type="button"
-              className="size-8 transition-all inline-flex justify-center items-center gap-x-2 rounded-sm border border-gray-200 bg-white text-gray-600 hover:bg-gray-200 focus:outline-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
+              className="size-8 transition-all inline-flex justify-center items-center gap-x-2 rounded-sm border border-gray-200 bg-white text-gray-600 hover:bg-gray-200 focus:outline-none dark:bg-neutral-700 dark:border-neutral-400 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-400 cursor-pointer"
               aria-label="Close"
               onClick={handleCancel}
             >
@@ -174,7 +166,7 @@ export const Modal: React.FC<ModalProps> = ({
           )}
         </div>
 
-        <div className="p-4 overflow-y-auto max-h-60">
+        <div className="p-4 flex-grow">
           {children ?? (
             content ? (
               <p className="mt-1 text-gray-800 dark:text-neutral-400">{content}</p>

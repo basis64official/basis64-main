@@ -5,7 +5,7 @@ export default function Pricing() {
     <div className="container p-4 mx-auto">
       <a
         href="#"
-        className="block p-6 bg-white border border-gray-200 rounded-xs hover:bg-gray-100 dark:bg-neutral-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        className="block p-6 bg-white border border-gray-200 rounded-xs hover:bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-gray-700"
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Coming soon

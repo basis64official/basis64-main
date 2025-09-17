@@ -12,7 +12,7 @@ export default function About() {
 					/>
 
 					{/* Overlay */}
-					<div className="absolute inset-0 bg-black opacity-50" />
+					<div className="absolute inset-0 bg-black opacity-70" />
 
 					{/* Konten */}
 					<div className="relative z-10 text-center px-4 sm:px-16">
@@ -31,8 +31,8 @@ export default function About() {
 						
 
 						<div className="sm:flex justify-between border-t pt-4 gap-4">
-							<div className="flex-1 bg-white/10 backdrop-blur border text-start border-white/30 shadow-md shadow-white/10 text-white text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-4 p-4">
-								Kami adalah perusahaan perangkat lunak dan penyedia layanan penerjemah bahasa Dayak Kenyah pertama di dunia yang menggunakan NLP (Natural Language Proccessing) yang memungkinkan penerjemahan yang akurat karena penerjemah kami dapat menerjemahkan kalimat dan bahkan mengubah susunan kata, seperti 'saya seorang guru' menjadi 'ca guru keq' atau 'sudahkah kamu makan' menjadi 'lepe ne ikoq uman'. Penerjemah kami berbeda dengan penerjemah generasi sebelumnya yang hanya mengganti kata perkata yang relatif sederhana.
+							<div className="flex-1 bg-white/10 border text-start border-white/30 shadow-md shadow-white/10 text-white text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-4 p-4">
+								Kami adalah pengembang perangkat lunak dan penyedia layanan penerjemah bahasa Dayak Kenyah pertama di dunia yang menggunakan NLP (Natural Language Proccessing) yang memungkinkan penerjemahan yang akurat karena penerjemah kami dapat menerjemahkan kalimat dan bahkan mengubah susunan kata, seperti 'saya seorang guru' menjadi 'ca guru keq' atau 'sudahkah kamu makan' menjadi 'lepe ne ikoq uman'. Penerjemah kami berbeda dengan penerjemah generasi sebelumnya yang hanya mengganti kata perkata yang relatif sederhana.
 							</div>
 						</div>
 					</div>
@@ -40,9 +40,9 @@ export default function About() {
 					
 				</header>
 				<div className="container p-4 mx-auto grid" id="mainLayout">
-						<div className="block p-6 bg-white border border-gray-200 rounded-xs hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-							<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" data-i18n="pages.about.contactTitle">Hubungi kami</h5>
-							<hr className="my-2" />
+						<div className="block p-6 bg-white border border-gray-200 rounded-xs dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-gray-700">
+							<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800 dark:text-white" data-i18n="pages.about.contactTitle">Hubungi kami</h5>
+							<hr className="my-2 border-gray-300 dark:border-gray-300" />
 							<div className="grid sm:grid-cols-4 gap-4">
 								<a href="https://wa.me/+6282211509216" target="_blank" className="w-full h-full text-green-600 border border-green-600 bg-green-100 hover:bg-green-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800 dark:bg-green-900">
 									<div className="w-full text-center items-center justify-center">

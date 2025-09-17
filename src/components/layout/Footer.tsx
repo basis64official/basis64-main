@@ -24,12 +24,12 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:underline me-4 md:me-6">
+              <Link to="/privacy-policy" className="hover:underline me-4 md:me-6">
                 Kebijakan Privasi
               </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:underline me-4 md:me-6">
+              <Link to="/terms-of-use" className="hover:underline me-4 md:me-6">
                 Syarat & Ketentuan
               </Link>
             </li>

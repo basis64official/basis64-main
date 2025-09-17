@@ -82,4 +82,49 @@ export class Utils {
       .replace(/([a-z])([A-Z])/g, "$1-$2") // sisipkan "-" sebelum huruf kapital
       .toLowerCase(); // ubah semua jadi lowercase
   }
+
+  static formatTimestamp(timestamp: number): string {
+    const date = new Date(timestamp);
+
+    // Nama hari & bulan dalam bahasa Indonesia
+    const weekdays = [
+      "Minggu",
+      "Senin",
+      "Selasa",
+      "Rabu",
+      "Kamis",
+      "Jumat",
+      "Sabtu",
+    ];
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+
+    const dayName = weekdays[date.getDay()];
+    const day = String(date.getDate()).padStart(2, "0");
+    const monthName = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
+    // Ambil offset timezone device
+    const timezoneOffset = -date.getTimezoneOffset(); // dalam menit
+    const tzHours = Math.floor(Math.abs(timezoneOffset) / 60);
+    const tzSign = timezoneOffset >= 0 ? "+" : "-";
+
+    return `${dayName}, ${day} ${monthName} ${year} - ${hours}:${minutes}:${seconds} UTC${tzSign}${tzHours}`;
+  }
 }

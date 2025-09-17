@@ -38,9 +38,9 @@ export default function FAQ() {
 
   return (
     <div className="container p-4 mx-auto">
-      <div className="rounded-xs border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900">
+      <div className="rounded-xs border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
         {faqData.map((item, idx) => (
-          <div key={idx} className="border-b border-gray-200 dark:border-gray-700">
+          <div key={idx} className="border-b border-gray-200 dark:border-neutral-700">
             <button
               type="button"
               className={`flex items-center justify-between w-full p-4 font-medium text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-neutral-800 transition-colors gap-3 focus:outline-gray-300 ${openIndex === idx ? "bg-blue-100 border-blue-600 dark:bg-neutral-800" : ""}`}
@@ -63,7 +63,7 @@ export default function FAQ() {
 					id={`faq-panel-${idx}`}
 					role="region"
 					aria-labelledby={`faq-header-${idx}`}
-					className={`overflow-hidden transition-all duration-300 p-4 border-t border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300`}
+					className={`overflow-hidden transition-all duration-300 p-4 border-t border-gray-200 dark:border-neutral-700 text-gray-600 dark:text-gray-300`}
 					>
 					<div className="p-5 text-gray-600 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: item.answer }} />
 					</div>

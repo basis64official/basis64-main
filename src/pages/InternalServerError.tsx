@@ -3,7 +3,7 @@ import { Button } from '../components/ui/Button';
 
 export default function InternalServerError() {
   return (
-    <main className="grid h-screen w-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <main className="bg-gray-50 grid h-screen w-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
         <p className="text-6xl font-semibold text-red-600 text-stroke text-stroke-2 text-stroke-white">500</p>
         <h1 className="mt-4 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">

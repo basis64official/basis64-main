@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useNavStore } from "../../state/useNavStore";
 
 interface FeatureCardProps {
   to?: string;           // internal route
@@ -32,6 +33,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   onRequireLogin
 }) => {
   const navigate = useNavigate();
+  const setFromHome = useNavStore((s) => s.setFromHome);
+
 
   const handleClick = (e: React.MouseEvent) => {
     if (isLogin && !isUserLogin) {
@@ -43,6 +46,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     console.log("handle click");
 
     // kalau udah login, baru lanjut navigate
+    setFromHome(true);
     if (to) navigate(to);
     if (href) window.open(href, "_blank");
   };
@@ -50,7 +54,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   return (
     <div
       onClick={handleClick}
-      className="cursor-pointer bg-white border border-gray-300 h-full shadow-xs dark:bg-neutral-800 dark:border-gray-700 rounded flex flex-col"
+      className="cursor-pointer bg-white border border-gray-300 h-full shadow-xs dark:bg-neutral-800 dark:border-neutral-700 rounded flex flex-col"
     >
       <img
         className="object-cover w-full h-48"

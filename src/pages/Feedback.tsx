@@ -3,20 +3,45 @@ import { useState } from "react";
 import { Input, Button, Modal, Spinner } from "../components/ui/";
 import useInput from "../hooks/useInput";
 import useModal from "../state/useModal";
+import { apiFetch } from "../api/apiFetch";
+import { CookieManager } from "../utils/CookieManager";
 
 
 export default function Feedback() {
   // const [name, setName] = useState("");
   const [name, onNameChange] = useInput("");
+  const [message, onMessageChange] = useInput("");
   const modal = useModal();
 
   const submitHandler = async () => {
+    if (name.trim().length === 0 || name.trim().length === 0) {
+      modal.show("failed", "Error", "Pesan tidak boleh kosong.");
+      return;
+    }
+
     modal.show("loading", "Mengirim", "Mengirim feedback...");
 
+    // await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const response = await apiFetch('/send-feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Session-ID': CookieManager.getCookie('session_id') || ''
+        },
+        body: JSON.stringify({
+          name: (name || 'User').trim(),
+          message: message.trim(),
+        }),
+      });
 
-    // fetch()
-
-    await new Promise(resolve => setTimeout(resolve, 2000));
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      modal.show("failed", "Error", "Tidak dapat mengirim feedback.");
+      return;
+    }
 
     modal.show("success", "Informasi", "Berhasil mengirim feedback.");
   }
@@ -50,7 +75,7 @@ export default function Feedback() {
         <div>
           <label htmlFor="hs-feedback-post-comment-textarea-1" className="block mb-2 text-sm font-medium dark:text-white" data-i18n="pages.feedback.message">Pesan</label>
           <div className="mt-1">
-            <textarea id="inputMessage" name="hs-feedback-post-comment-textarea-1" rows={3} className="bg-gray-50 border border-neutral-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ketik pesan kamu di sini..." data-i18n-placeholder="pages.feedback.messagePlaceholder"></textarea>
+            <textarea value={message} onChange={onMessageChange} name="hs-feedback-post-comment-textarea-1" rows={3} className="bg-gray-50 border border-neutral-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ketik pesan kamu di sini..." data-i18n-placeholder="pages.feedback.messagePlaceholder" required></textarea>
           </div>
         </div>
         <div className="mt-6 grid">

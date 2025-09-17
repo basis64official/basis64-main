@@ -11,7 +11,7 @@ const useInput = (initialValue: string = "") => {
 
   const reset = () => setValue(initialValue);
 
-  return [ value, onChange, reset ] as const;
+  return [ value, onChange, setValue, reset ] as const;
 };
 
 export default useInput;

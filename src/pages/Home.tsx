@@ -2,13 +2,14 @@
 // import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bgImage from '../assets/img/header.webp';
+import userImage from '../assets/img/user.webp';
 // import UserProfile from '../components/layout/UserProfile';
 // import useAuth from '../state/useAuth';
 import { FeatureList } from '../components/layout/FeatureList';
 import { AnimatedCounter } from '../components/ui/AnimatedCounter';
 import useInfo from '../state/useInfo';
 import useNavigationBar from '../state/useNavigationBar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import { apiFetch } from '../api/apiFetch';
 // import Login from './Login';
 
@@ -18,6 +19,21 @@ export default function Home() {
 
 	useEffect(() => {
 		navigationBar.show();
+	}, []);
+
+	const [changelog, setChangelog] = useState("Loading...");
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await fetch('https://cdn.jsdelivr.net/gh/basis64computer/public/changelog.txt');
+				const data = await response.text();
+				setChangelog(data);
+				// Update state with data
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		})();
 	}, []);
 
 	return (
@@ -74,8 +90,8 @@ export default function Home() {
 
 			<FeatureList />
 
-			<div className="p-4">
-				<div className="flex-1 items-center p-4 mb-4 bg-white shadow-xs dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-400 text-center">
+			<div className="px-4">
+				<div className="flex-1 items-center p-4 mb-4 bg-white shadow-xs dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-center">
 					<svg className="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
 						<path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"></path>
 					</svg>
@@ -83,14 +99,14 @@ export default function Home() {
 						<p className="text-2xl italic font-medium text-gray-900 dark:text-white">"Kami mengerjakan apa yang dibicarakan, bukan hanya berbicara tentang apa yang dibicarakan."</p>
 					</blockquote>
 					<figcaption className="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-						<img className="w-6 h-6 rounded-full border border-neutral-300" src="/src/assets/img/user.png" alt="Administrator" />
+						<img className="w-6 h-6 rounded-full border border-neutral-300" src={userImage} alt="Administrator" />
 						<div className="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
 							<cite className="pe-3 font-medium text-gray-900 dark:text-white"><Link to="/admin/login">Administrator</Link></cite>
 							<cite className="ps-3 text-sm text-gray-500 dark:text-gray-400">2025</cite>
 						</div>
 					</figcaption>
 				</div>
-				<div className="flex items-center p-4 bg-white shadow-xs dark:bg-neutral-800 border border-neutral-300">
+				<div className="flex items-center p-4 bg-white shadow-xs dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600">
 					<div className="p-3 mr-4 text-gray-500 bg-gray-100 rounded-full px-4 dark:text-gray-100 dark:bg-neutral-500">
 						<i className="bi bi-terminal-fill"></i>
 					</div>
@@ -100,7 +116,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<textarea id="changeLogText" rows={20} className="block p-2.5 mb-4 w-full outline-none text-sm text-white font-mono bg-black border border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white" placeholder="The change log should be written here..." readOnly></textarea>
+				<textarea rows={20} value={changelog} className="block p-2.5 w-full outline-none text-sm text-white font-mono bg-black border border-t-0 border-gray-400 dark:border-neutral-600 dark:bg-neutral-700 dark:placeholder-gray-400 dark:text-white" placeholder="The change log should be written here..." readOnly></textarea>
 			</div>
 		</>
 	);

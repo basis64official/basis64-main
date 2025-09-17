@@ -12,7 +12,7 @@ export class AES {
 	// ===== Generate random IV =====
 	// return iv:string(base64, 16 bytes)
 	static generateIv(): string {
-		const array = new Uint8Array(16); // 128 bit
+		const array = new Uint8Array(12); // 96 bit
 		crypto.getRandomValues(array);
 		return Utils.arrayBufferToBase64(array.buffer);
 	}
@@ -31,13 +31,13 @@ export class AES {
 		const cryptoKey = await crypto.subtle.importKey(
 			'raw',
 			keyBytes,
-			{ name: 'AES-CBC' }, // bisa diganti AES-GCM
+			{ name: 'AES-GCM' }, // bisa diganti AES-GCM
 			false,
 			['encrypt']
 		);
 
 		const encrypted = await crypto.subtle.encrypt(
-			{ name: 'AES-CBC', iv: ivBytes },
+			{ name: 'AES-GCM', iv: ivBytes, tagLength: 128 },
 			cryptoKey,
 			Utils.encodeUTF8(plaintext) as BufferSource
 		);
@@ -59,13 +59,13 @@ export class AES {
 		const cryptoKey = await crypto.subtle.importKey(
 			'raw',
 			keyBytes,
-			{ name: 'AES-CBC' },
+			{ name: 'AES-GCM' },
 			false,
 			['decrypt']
 		);
 
 		const decrypted = await crypto.subtle.decrypt(
-			{ name: 'AES-CBC', iv: ivBytes },
+			{ name: 'AES-GCM', iv: ivBytes, tagLength: 128 },
 			cryptoKey,
 			Utils.base64ToArrayBuffer(ciphertextBase64)
 		);

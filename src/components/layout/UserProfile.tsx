@@ -38,7 +38,7 @@ const UserProfile = () => {
             onClick={() => setDropdownOpen(false)}
             >
                 <div
-                    className={`z-50 absolute top-10 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm border border-gray-400 dark:bg-neutral-900 dark:divide-neutral-600 transition-opacity duration-300 ${dropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+                    className={`z-50 absolute top-10 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm border border-gray-400 dark:border-neutral-600 dark:bg-neutral-900 dark:divide-neutral-600 transition-opacity duration-300 ${dropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
                         }`}
                         onClick={(e) => e.stopPropagation()}
                 >
