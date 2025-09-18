@@ -218,6 +218,8 @@ export default function App() {
         </Routes>
       </main>
 
+      {useLoginModal().modal ? <LoginModal /> : <></>}
+
       <div
         className={`${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"
           } transition-all duration-500 bg-gray-50 dark:bg-neutral-950`}
@@ -225,7 +227,6 @@ export default function App() {
         {!shouldHideLayout && <Footer />}
 
       </div>
-      {useLoginModal().modal ? <LoginModal /> : <></>}
     </div>
   );
 }
