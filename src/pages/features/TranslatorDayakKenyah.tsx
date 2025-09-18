@@ -3,7 +3,6 @@ import { CookieManager } from "../../utils/CookieManager";
 
 export default function TranslatorDayakKenyah() {
     const URL = "https://dayak-kenyah-translator.basis64computer.workers.dev"; // Ganti dengan URL server Anda
-    const LOCAL_URL = "http://localhost:36535"; // Ganti dengan URL server Anda
     const [switchLanguage, setSwitchLanguage] = useState(false);
     const [translateInput, setTranslateInput] = useState("");
     const [translateOutput, setTranslateOutput] = useState("");

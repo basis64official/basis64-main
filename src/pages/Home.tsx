@@ -78,13 +78,16 @@ export default function Home() {
 
 	return (
 		<>
-			{/* Tips Section */}
+			{/* Description Section */}
 			<section className="px-4 mx-auto mt-6 mb-6">
-				<div className="bg-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 rounded-sm shadow-xs p-5 space-y-2">
+				<div className="bg-white text-black dark:text-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 rounded-sm shadow-xs p-5 space-y-2 text-center">
 					<h2 className="text-lg font-semibold">Terjemahkan Bahasa Dayak Kenyah dengan mudah dan cepat!</h2>
-					<p className="text-base">Kamu dapat menerjemahkan bahasa Dayak Kenyah secara instan tanpa perlu menerjemahannya secara manual dalam waktu yang lama.</p>
+					<p className="text-base">
+						Kamu dapat menerjemahkan bahasa Dayak Kenyah secara instan tanpa perlu menerjemahannya secara manual dalam waktu yang lama.
+					</p>
 				</div>
 			</section>
+
 
 
 			{/* Translator Section */}
@@ -103,7 +106,7 @@ export default function Home() {
 
 					<div className="grid sm:grid-cols-2 gap-4">
 						{/* Input */}
-						<div className="flex flex-col p-4 rounded-sm border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+						<div className="flex flex-col p-4 rounded-sm shadow-xs border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
 							<div className="flex justify-between items-center mb-2">
 								<span className="text-base font-medium text-gray-800 dark:text-gray-200">
 									{inputTitle}
@@ -131,7 +134,7 @@ export default function Home() {
 							</div>
 							<textarea
 								rows={8}
-								className="resize-none p-3 w-full rounded-sm text-base text-gray-900 bg-gray-50 border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white"
+								className="resize-none p-3 w-full rounded-sm shadow-xs text-base text-gray-900 bg-gray-50 border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white"
 								placeholder="Tulis teks di sini..."
 								value={translateInput}
 								onChange={(e) => setTranslateInput(e.target.value)}

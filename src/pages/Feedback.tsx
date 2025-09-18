@@ -91,7 +91,7 @@ export default function Feedback() {
             value={message}
             onChange={onMessageChange}
             rows={5}
-            className="w-full rounded-xl border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 px-4 py-3 text-base text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full rounded-sm border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 p-2.5 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
             placeholder="Ketik pesan kamu di sini..."
             data-i18n-placeholder="pages.feedback.messagePlaceholder"
             required

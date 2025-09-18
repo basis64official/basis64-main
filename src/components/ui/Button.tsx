@@ -50,42 +50,26 @@ const sizeStyles: Record<ButtonSize, string> = {
 
 // components/ui/Button.tsx
 const baseStyles =
-  "cursor-pointer inline-flex items-center justify-center gap-2 font-medium rounded-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md hover:scale-102 active:scale-95";
+  "cursor-pointer inline-flex items-center justify-center gap-2 font-medium rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md hover:scale-[1.005] active:scale-99";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  red: "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-red-400",
-  "transparent-red":
-    "bg-red-600/10 text-red-600 hover:bg-red-600/20 focus:ring-red-300",
-  "outline-red":
-    "border border-red-600 text-red-600 hover:bg-red-600/10 focus:ring-red-300",
+  red: "bg-gradient-to-r from-red-700 to-red-500 text-white group hover:from-red-500 hover:to-red-700 focus:ring-red-400 transition-colors duration-300",
+  orange: "bg-gradient-to-r from-orange-600 to-orange-400 text-white group hover:from-orange-400 hover:to-orange-600 focus:ring-orange-400 transition-colors duration-300",
+  yellow: "bg-gradient-to-r from-yellow-600 to-yellow-400 text-white group hover:from-yellow-400 hover:to-yellow-600 focus:ring-yellow-400 transition-colors duration-300",
+  blue: "bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300",
+  gray: "bg-gradient-to-r from-gray-800 to-gray-600 text-white group hover:from-gray-600 hover:to-gray-800 focus:ring-gray-400 transition-colors duration-300",
 
-  orange:
-    "bg-gradient-to-r from-orange-400 to-orange-500 text-white hover:from-orange-500 hover:to-orange-600 focus:ring-orange-400",
-  "transparent-orange":
-    "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 focus:ring-orange-300",
-  "outline-orange":
-    "border border-orange-500 text-orange-600 hover:bg-orange-500/10 focus:ring-orange-300",
-
-  yellow:
-    "bg-gradient-to-r from-yellow-400 to-yellow-500 text-white hover:from-yellow-500 hover:to-yellow-600 focus:ring-yellow-400",
-  "transparent-yellow":
-    "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20 focus:ring-yellow-300",
-  "outline-yellow":
-    "border border-yellow-500 text-yellow-600 hover:bg-yellow-500/10 focus:ring-yellow-300",
-
-  blue: "bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 focus:ring-blue-400",
-  "transparent-blue":
-    "bg-blue-600/10 text-blue-600 hover:bg-blue-600/20 focus:ring-blue-300",
-  "outline-blue":
-    "border border-blue-600 text-blue-600 hover:bg-blue-600/10 focus:ring-blue-300",
-
-  gray: "bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 focus:ring-gray-400",
-  "transparent-gray":
-    "bg-gray-700/10 text-gray-700 hover:bg-gray-700/20 focus:ring-gray-300",
-  "outline-gray":
-    "border border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-600/10 focus:ring-gray-300",
+  "transparent-red": "bg-red-600/10 text-red-600 hover:bg-red-600/20 focus:ring-red-300 transition-colors duration-300",
+  "outline-red": "border border-red-600 text-red-600 hover:bg-red-600/10 focus:ring-red-300 transition-colors duration-300",
+  "transparent-orange": "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 focus:ring-orange-300 transition-colors duration-300",
+  "outline-orange": "border border-orange-500 text-orange-600 hover:bg-orange-500/10 focus:ring-orange-300 transition-colors duration-300",
+  "transparent-yellow": "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20 focus:ring-yellow-300 transition-colors duration-300",
+  "outline-yellow": "border border-yellow-500 text-yellow-600 hover:bg-yellow-500/10 focus:ring-yellow-300 transition-colors duration-300",
+  "transparent-blue": "bg-blue-600/10 text-blue-600 hover:bg-blue-600/20 focus:ring-blue-300 transition-colors duration-300",
+  "outline-blue": "border border-blue-600 text-blue-600 hover:bg-blue-600/10 focus:ring-blue-300 transition-colors duration-300",
+  "transparent-gray": "bg-gray-700/10 text-gray-700 hover:bg-gray-700/20 focus:ring-gray-300 transition-colors duration-300",
+  "outline-gray": "border border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-600/10 focus:ring-gray-300 transition-colors duration-300",
 };
-
 
 export const Button: React.FC<ButtonProps> = ({
   as = "button",

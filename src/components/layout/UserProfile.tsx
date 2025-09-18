@@ -16,7 +16,7 @@ const UserProfile = () => {
             <div>
                 <button
                     type="button"
-                    className="flex text-sm focus:bg-gray-200 rounded-full focus:ring-2 focus:ring-gray-400 dark:focus:ring-neutral-600"
+                    className="flex text-sm hover:bg-neutral-700 focus:bg-neutral-800 rounded-full focus:ring-2 focus:ring-neutral-600 dark:focus:ring-neutral-600 cursor-pointer"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-user"
                     onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -38,7 +38,7 @@ const UserProfile = () => {
             onClick={() => setDropdownOpen(false)}
             >
                 <div
-                    className={`z-50 absolute top-10 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm border border-gray-400 dark:border-neutral-600 dark:bg-neutral-900 dark:divide-neutral-600 transition-opacity duration-300 ${dropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+                    className={`z-50 absolute top-10 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm border border-gray-300 dark:border-neutral-600 dark:bg-neutral-900 dark:divide-neutral-600 transition-opacity duration-300 ${dropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
                         }`}
                         onClick={(e) => e.stopPropagation()}
                 >
@@ -53,7 +53,7 @@ const UserProfile = () => {
                                 </p>
                             </>
                         ) : (
-                            <Button variant="transparent-blue" className="text-sm py-2.5 w-full" onClick={() => loginModal.show()}>Login</Button>
+                            <Button variant="blue" className="text-sm py-2.5 w-full" onClick={() => loginModal.show()}>Login</Button>
                         )}
                     </div>
 

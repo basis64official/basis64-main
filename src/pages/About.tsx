@@ -1,7 +1,36 @@
 import Logo from '../assets/img/logo.png';
-import bgImage from '../assets/img/header.webp';
 
 export default function About() {
+	const colors = {
+		green: {
+			text: "text-green-600",
+			border: "border-green-500",
+			bg: "bg-green-50",
+			darkBg: "dark:bg-green-900/30",
+			hover: "hover:bg-green-100 dark:hover:bg-green-800",
+		},
+		rose: {
+			text: "text-rose-600",
+			border: "border-rose-500",
+			bg: "bg-rose-50",
+			darkBg: "dark:bg-rose-900/30",
+			hover: "hover:bg-rose-100 dark:hover:bg-rose-800",
+		},
+		purple: {
+			text: "text-purple-600",
+			border: "border-purple-500",
+			bg: "bg-purple-50",
+			darkBg: "dark:bg-purple-900/30",
+			hover: "hover:bg-purple-100 dark:hover:bg-purple-800",
+		},
+		blue: {
+			text: "text-blue-600",
+			border: "border-blue-500",
+			bg: "bg-blue-50",
+			darkBg: "dark:bg-blue-900/30",
+			hover: "hover:bg-blue-100 dark:hover:bg-blue-800",
+		},
+	};
 	return (
 		<>
 			{/* Hero Section */}
@@ -44,38 +73,18 @@ export default function About() {
 					<hr className="mb-6 border-gray-300 dark:border-gray-700" />
 
 					<div className="grid sm:grid-cols-4 gap-6">
-						{[
-							{
-								href: 'https://wa.me/+6282211509216',
-								label: 'WhatsApp',
-								color: 'green',
-								icon: 'bi bi-whatsapp',
-							},
-							{
-								href: 'https://www.instagram.com/basis64computer',
-								label: 'Instagram',
-								color: 'rose',
-								icon: 'bi bi-instagram',
-							},
-							{
-								href: 'https://discord.gg/gywRbyK8VN/',
-								label: 'Discord',
-								color: 'purple',
-								icon: 'bi bi-discord',
-							},
-							{
-								href: 'https://t.me/basis64computer',
-								label: 'Telegram',
-								color: 'blue',
-								icon: 'bi bi-telegram',
-							},
-						].map(({ href, label, color, icon }) => (
+						{([
+							{ href: 'https://wa.me/+6282211509216', label: 'WhatsApp', color: 'green', icon: 'bi bi-whatsapp' },
+							{ href: 'https://www.instagram.com/basis64computer', label: 'Instagram', color: 'rose', icon: 'bi bi-instagram' },
+							{ href: 'https://discord.gg/gywRbyK8VN/', label: 'Discord', color: 'purple', icon: 'bi bi-discord' },
+							{ href: 'https://t.me/basis64computer', label: 'Telegram', color: 'blue', icon: 'bi bi-telegram' },
+						] as const).map(({ href, label, color, icon }) => (
 							<a
 								key={label}
 								href={href}
 								target="_blank"
 								rel="noopener noreferrer"
-								className={`group flex flex-col items-center justify-center gap-2 border-2 border-${color}-500 text-${color}-600 bg-${color}-50 dark:bg-${color}-900/30 rounded-sm p-6 hover:bg-${color}-100 dark:hover:bg-${color}-800 transition-all duration-300 shadow-md hover:shadow-lg`}
+								className={`group flex flex-col items-center justify-center gap-2 border-2 ${colors[color].border} ${colors[color].text} ${colors[color].bg} ${colors[color].darkBg} rounded-sm p-6 ${colors[color].hover} transition-all duration-300 shadow-md hover:shadow-lg`}
 							>
 								<i className={`${icon} text-5xl`} />
 								<span className="text-lg font-semibold group-hover:scale-105 transition-transform">
