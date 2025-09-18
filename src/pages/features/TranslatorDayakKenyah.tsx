@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CookieManager } from "../../utils/CookieManager";
-
-interface TranslationHistoryItem {
-    id: number;
-    input: string;
-    output: string;
-}
 
 export default function TranslatorDayakKenyah() {
     const URL = "https://dayak-kenyah-translator.basis64computer.workers.dev"; // Ganti dengan URL server Anda

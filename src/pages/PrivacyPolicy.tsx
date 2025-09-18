@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function PrivacyPolicy() {
     return (
-        <main className="px-6 py-8 mt-4 mx-4 bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
+        <main className="px-6 py-8 mt-4 mx-4 bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white rounded-sm shadow-xs">
             <h1 className="text-3xl font-extrabold mb-4">Privacy Policy</h1>
 
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "../../components/ui";
+import { Button } from "../components/ui";
+
+// --- util functions (tetep sama) ---
+// ... (biarin util tetap sama kayak punya lu)
 
 // --- Util functions ---
 function ipToBinary(ip: string): string {
@@ -91,7 +94,6 @@ function getSubnetInfo(ip: string, cidr: number) {
   };
 }
 
-// --- Page Component ---
 const SubnetCalculatorPage: React.FC = () => {
   const [ip, setIp] = useState("192.168.1.1");
   const [prefix, setPrefix] = useState(24);
@@ -104,56 +106,43 @@ const SubnetCalculatorPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 mx-auto">
       {/* Tabs */}
-      <div className="mb-4 border-b border-gray-200 dark:border-neutral-700">
-        <ul className="flex flex-wrap-mb-px text-sm font-medium text-center">
-          <li className="me-2">
-            <button
-              className={`inline-block p-4 border-b-2 rounded-t-lg ${
-                activeTab === "ipv4"
-                  ? "text-primary-600 border-primary-600 dark:text-neutral-300 dark:border-primary-500"
-                  : "text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-              }`}
-              onClick={() => setActiveTab("ipv4")}
-            >
-              IPv4
-            </button>
-          </li>
-          <li className="me-2">
-            <button
-              className={`inline-block p-4 border-b-2 rounded-t-lg ${
-                activeTab === "ipv6"
-                  ? "text-primary-600 border-primary-600 dark:text-neutral-300 dark:border-primary-500"
-                  : "text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-              }`}
-              onClick={() => setActiveTab("ipv6")}
-            >
-              IPv6
-            </button>
-          </li>
-        </ul>
+      <div className="flex gap-6 border-b border-gray-200 dark:border-neutral-700 mb-8">
+        {["ipv4", "ipv6"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab as "ipv4" | "ipv6")}
+            className={`pb-2 text-base font-medium transition-colors ${
+              activeTab === tab
+                ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
+                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            }`}
+          >
+            {tab.toUpperCase()}
+          </button>
+        ))}
       </div>
 
-      {/* IPv4 Content */}
       {activeTab === "ipv4" && (
-        <div className="rounded-sm bg-gray-50 dark:bg-neutral-950 lg:block">
-          <div className="block p-4 mb-4 bg-white border border-gray-200 shadow-xs dark:bg-neutral-800 dark:border-neutral-700">
-            <div className="font-semibold mb-2 dark:text-white">
-              <i className="bi bi-braces mr-2"></i> Input
-            </div>
-            <div className="flex flex-wrap gap-2">
+        <div className="space-y-8">
+          {/* Input */}
+          <div>
+            <h3 className="font-semibold text-lg mb-4 text-gray-900 dark:text-white">
+              Input
+            </h3>
+            <div className="flex flex-col lg:flex-row gap-3">
               <input
                 type="text"
                 value={ip}
                 onChange={(e) => setIp(e.target.value)}
-                className="w-full flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full lg:w-2/3 p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white"
+                className="flex-1 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 px-4 py-2 text-base text-gray-900 dark:text-white focus:ring-1 focus:ring-blue-500 focus:outline-none"
                 placeholder="Alamat IP"
               />
               <select
                 value={prefix}
                 onChange={(e) => setPrefix(Number(e.target.value))}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full lg:w-1/3 p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-gray-400 dark:text-white"
+                className="rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 px-4 py-2 text-base text-gray-900 dark:text-white focus:ring-1 focus:ring-blue-500 focus:outline-none"
               >
                 {Array.from({ length: 32 }, (_, i) => 32 - i).map((n) => (
                   <option key={n} value={n}>
@@ -161,41 +150,54 @@ const SubnetCalculatorPage: React.FC = () => {
                   </option>
                 ))}
               </select>
-            </div>
-            <div className="grid">
               <Button
-              variant="blue"
-                className="mt-4"
+                variant="blue"
+                className="lg:w-auto rounded-lg"
                 onClick={handleCalculate}
               >
-                Enter
+                Hitung
               </Button>
             </div>
           </div>
 
-          <div className="block p-6 bg-white border border-gray-200 shadow-xs dark:bg-neutral-800 dark:border-neutral-700">
-            <div className="font-semibold mb-2 dark:text-white">
-              <i className="bi bi-ethernet mr-2"></i> Hasil
-            </div>
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <tbody>
+          {/* Result */}
+          <div>
+            <h3 className="font-semibold text-lg mb-4 text-gray-900 dark:text-white">
+              Hasil
+            </h3>
+            {Object.keys(result).length === 0 ? (
+              <p className="text-gray-500 dark:text-gray-400 text-base">
+                Masukkan IP dan prefix untuk melihat hasilnya.
+              </p>
+            ) : (
+              <div className="grid sm:grid-cols-2 gap-4">
                 {Object.entries(result).map(([key, value]) => (
-                  <tr key={key}>
-                    <td className="px-2 py-1 font-medium">{key}</td>
-                    <td className="px-2 py-1">: {value}</td>
-                  </tr>
+                  <div
+                    key={key}
+                    className="rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-4"
+                  >
+                    <p className="font-medium text-gray-900 dark:text-white text-base">
+                      {key}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-300 text-base break-all">
+                      {value}
+                    </p>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            )}
           </div>
         </div>
       )}
 
-      {/* IPv6 Content */}
       {activeTab === "ipv6" && (
-        <div className="hidden p-4 rounded-sm bg-gray-50 dark:bg-neutral-800 lg:block">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Fitur untuk <strong className="font-medium text-gray-800 dark:text-white">IPv6</strong> akan hadir nanti. (Coming soon)
+        <div className="rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-6">
+          <p className="text-base text-gray-500 dark:text-gray-400">
+            Fitur untuk{" "}
+            <span className="font-medium text-gray-900 dark:text-white">
+              IPv6
+            </span>{" "}
+            akan hadir nanti 🚀
           </p>
         </div>
       )}

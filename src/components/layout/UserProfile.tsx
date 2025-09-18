@@ -16,7 +16,7 @@ const UserProfile = () => {
             <div>
                 <button
                     type="button"
-                    className="flex text-sm focus:bg-neutral-700 rounded-full focus:ring-2 focus:ring-neutral-600 dark:focus:ring-neutral-600"
+                    className="flex text-sm focus:bg-gray-200 rounded-full focus:ring-2 focus:ring-gray-400 dark:focus:ring-neutral-600"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-user"
                     onClick={() => setDropdownOpen(!dropdownOpen)}

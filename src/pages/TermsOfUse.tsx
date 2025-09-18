@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function TermsOfUse() {
   return (
-    <main className="px-6 py-8 mt-4 mx-4 bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
+    <main className="px-6 py-8 mt-4 mx-4 bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white rounded-sm shadow-xs">
       <h1 className="text-3xl font-extrabold mb-6">Terms of Use</h1>
       <p className="text-slate-600 dark:text-slate-200 mb-8">
         Dengan menggunakan <strong>BASIS-64</strong>, Anda setuju untuk mengikuti aturan sederhana di bawah ini.

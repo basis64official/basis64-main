@@ -24,84 +24,112 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
     }
   }, [darkMode]);
 
-  // const toggleDarkMode = () => setDarkMode(!darkMode);
-
   const isMobile = () => window.innerWidth < 640;
   const handleMenuClick = () => {
     if (isMobile()) setSidebarOpen(false);
   };
 
-  const menuItems = location.pathname.includes("admin") ? [
-    { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
-    { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
-    { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
-    // { id: "inbox", label: "Kotak masuk", icon: "bi-envelope", to: "/admin/inbox" },
-    { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/cms" },
-    // { id: "blacklist", label: "Blacklist", icon: "bi-ban", to: "/admin/blacklist" },
-    // { id: "security", label: "Keamanan", icon: "bi-key", to: "/admin/security" },
-
-  ] : [
-    { id: "home", label: "Halaman awal", icon: "bi-house", to: "/" },
-    { id: "dev", label: "Opsi pengembang", icon: "bi-braces", to: "/developer" },
-    { id: "pricing", label: "Harga produk", icon: "bi-tags", to: "/pricing" },
-    { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
-    { id: "faq", label: "FAQ", icon: "bi-question-square", to: "/faq" },
-    { id: "about", label: "Tentang kami", icon: "bi-info-square", to: "/about" },
-    { id: "docs", label: "Dokumentasi", icon: "bi-journals", to: "/docs" },
-  ];
+  const menuItems = location.pathname.includes("admin")
+    ? [
+        { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
+        { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
+        { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
+        { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/cms" },
+      ]
+    : [
+        { id: "home", label: "Penerjemah", icon: "bi-translate", to: "/" },
+        { id: "dev", label: "Kalkulator Subnetting", icon: "bi-ethernet", to: "/subnetting" },
+        { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
+        { id: "about", label: "Tentang kami", icon: "bi-info-square", to: "/about" },
+        { id: "docs", label: "Dokumentasi", icon: "bi-journals", to: "/docs" },
+      ];
 
   return (
-    <aside
-      id="logo-sidebar"
-      className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white border-r border-gray-300 dark:bg-neutral-900 dark:border-neutral-600 transition-transform duration-500 ease-in-out shadow-sm border-r ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+    <>
+      {/* Backdrop (mobile only) */}
+      <div
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${
+          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-      aria-label="Sidebar"
-    >
-      <div className="h-full flex flex-col px-3 pb-4">
-        {/* Menu list (scrollable) */}
-        <ul className="flex-1 overflow-y-auto space-y-2 text-sm">
-          {menuItems.map(({ id, label, icon, to }) => {
-            const isActive = location.pathname === to;
-            return (
-              <li key={id}>
-                <Link
-                  to={to}
-                  onClick={handleMenuClick}
-                  className={`flex items-center p-2 rounded-sm font-medium transition duration-150 ${isActive
-                    ? "font-semibold bg-blue-100 border border-blue-600 text-blue-600 dark:bg-blue-900 dark:text-white"
-                    : "text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+        aria-hidden="true"
+        onClick={() => setSidebarOpen(false)}
+      ></div>
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white dark:bg-neutral-900 border-r border-gray-300 dark:border-neutral-700 shadow-xs transition-transform duration-500 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+        aria-label="Sidebar"
+      >
+        <div className="h-full flex flex-col px-4 pb-6">
+          {/* Menu list */}
+          <ul className="flex-1 overflow-y-auto no-scrollbar space-y-1 text-sm">
+            {menuItems.map(({ id, label, icon, to }) => {
+              const isActive = location.pathname === to;
+              return (
+                <li key={id}>
+                  <Link
+                    to={to}
+                    onClick={handleMenuClick}
+                    className={`flex items-center gap-3 px-3 py-2 rounded-md font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md"
+                        : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                     }`}
-                >
-                  <i
-                    className={`bi ${icon} w-5 h-7 text-xl align-middle transition duration-75 ${isActive ? "text-blue-600" : "text-gray-700"
+                  >
+                    <i
+                      className={`bi ${icon} text-lg ${
+                        isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
                       }`}
-                  />
-                  <span className="ms-3 whitespace-nowrap align-middle">{label}</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                    />
+                    <span>{label}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
-        {/* Sticky bottom login section */}
-        {auth.user ? (<div className="mt-4">
-          <p className="font-semibold text-gray-600 text-base text-center dark:text-neutral-300">Login sebagai</p>
-          <p className="text-gray-500 text-md text-center mb-4 dark:text-neutral-300">
-            {auth.name}
-          </p>
-          <Button as="button" variant="red" className="w-full" onClick={() => AuthManager.logOut()}>Logout</Button>
-        </div>) : (
-          <div className="space-y-2 mt-4">
-            <p className="font-semibold text-gray-600 text-base text-center dark:text-neutral-300">Belum login?</p>
-            <p className="text-gray-500 text-md text-center mb-4 dark:text-neutral-300">
-              Login untuk menggunakan sebagian besar fitur di BASIS-64
-            </p>
-            <Button as="button" variant="blue" className="w-full" onClick={() => loginModal.show()}>Login</Button>
+          {/* Bottom login section */}
+          <div className="mt-6 p-4 rounded-sm bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 shadow-xs mb-8 sm:mb-0">
+            {auth.user ? (
+              <>
+                <p className="font-semibold text-gray-700 dark:text-gray-200 text-center">
+                  Login sebagai
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm text-center mb-3">
+                  {auth.name}
+                </p>
+                <Button
+                  as="button"
+                  variant="red"
+                  className="w-full"
+                  onClick={() => AuthManager.logOut()}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold text-gray-700 dark:text-gray-200 text-center">
+                  Belum login?
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm text-center mb-3">
+                  Login untuk menggunakan sebagian fitur di BASIS-64
+                </p>
+                <Button
+                  as="button"
+                  variant="blue"
+                  className="w-full"
+                  onClick={() => loginModal.show()}
+                >
+                  Login
+                </Button>
+              </>
+            )}
           </div>
-        )}
-
-      </div>
-    </aside>
-
+        </div>
+      </aside>
+    </>
   );
 }
