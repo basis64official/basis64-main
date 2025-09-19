@@ -64,7 +64,7 @@ export default function Feedback() {
       </div>
 
       {/* Form Card */}
-      <div className="rounded-sm border border-gray-300 dark:border-neutral-700 bg-white/80 dark:bg-neutral-900 backdrop-blur-sm shadow-xs p-6 sm:p-10">
+      <div className="rounded-md border border-gray-300 dark:border-neutral-700 bg-white/80 dark:bg-neutral-900 shadow-sm p-6 sm:p-10">
         <div className="mb-6">
           <Input
             id="inputName"
@@ -91,7 +91,7 @@ export default function Feedback() {
             value={message}
             onChange={onMessageChange}
             rows={5}
-            className="w-full rounded-sm border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 p-2.5 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full rounded-md border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 p-2.5 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
             placeholder="Ketik pesan kamu di sini..."
             data-i18n-placeholder="pages.feedback.messagePlaceholder"
             required

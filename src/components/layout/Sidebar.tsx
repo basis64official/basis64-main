@@ -57,7 +57,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white dark:bg-neutral-900 border-r border-gray-300 dark:border-neutral-700 shadow-xs transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white dark:bg-neutral-900 border-r border-gray-300 dark:border-neutral-700 shadow-sm transition-transform duration-500 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         aria-label="Sidebar"
@@ -91,7 +91,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
           </ul>
 
           {/* Bottom login section */}
-          <div className="mt-6 p-4 rounded-sm bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 shadow-xs mb-8 sm:mb-0">
+          <div className="mt-6 p-4 rounded-md bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 shadow-sm mb-8 sm:mb-0">
             {auth.user ? (
               <>
                 <p className="font-semibold text-gray-700 dark:text-gray-200 text-center">

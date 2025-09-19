@@ -55,7 +55,7 @@ export default function About() {
 
 
 					{/* Intro Box */}
-					<div className="bg-white border border-gray-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white rounded-sm p-4 mx-auto text-gray-700 shadow-xs transition duration-300">
+					<div className="bg-white border border-gray-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white rounded-md p-4 mx-auto text-gray-700 shadow-xs transition duration-300">
 						Kami adalah pengembang perangkat lunak dan penyedia layanan penerjemah bahasa Dayak Kenyah pertama di dunia
 						yang menggunakan NLP (Natural Language Processing). Penerjemah kami mampu memahami konteks kalimat dan
 						menyusun ulang kata, misalnya dari "saya seorang guru" menjadi "ca guru keq", atau "sudahkah kamu makan"
@@ -66,7 +66,7 @@ export default function About() {
 
 			{/* Contact Section */}
 			<div className="container mx-auto p-6 grid" id="mainLayout">
-				<div className="p-6 bg-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-800 rounded-sm shadow-xs">
+				<div className="p-6 bg-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-800 rounded-md shadow-sm">
 					<h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
 						Hubungi Kami
 					</h5>
@@ -84,7 +84,7 @@ export default function About() {
 								href={href}
 								target="_blank"
 								rel="noopener noreferrer"
-								className={`group flex flex-col items-center justify-center gap-2 border-2 ${colors[color].border} ${colors[color].text} ${colors[color].bg} ${colors[color].darkBg} rounded-sm p-6 ${colors[color].hover} transition-all duration-300 shadow-md hover:shadow-lg`}
+								className={`group flex flex-col items-center justify-center gap-2 border-2 ${colors[color].border} ${colors[color].text} ${colors[color].bg} ${colors[color].darkBg} rounded-md p-6 ${colors[color].hover} transition-all duration-300 shadow-md hover:shadow-lg`}
 							>
 								<i className={`${icon} text-5xl`} />
 								<span className="text-lg font-semibold group-hover:scale-105 transition-transform">
