@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
-    <footer className="bg-white shadow-sm dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-600 mt-8 inset-x-0 bottom-0">
+    <footer className="bg-white shadow-sm dark:bg-neutral-900 border-t border-gray-300 dark:border-neutral-600 mt-8 inset-x-0 bottom-0">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div
@@ -29,7 +29,7 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/terms-of-use" className="hover:underline me-4 md:me-6">
+              <Link to="/terms-of-service" className="hover:underline me-4 md:me-6">
                 Syarat & Ketentuan
               </Link>
             </li>

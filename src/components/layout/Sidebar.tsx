@@ -74,7 +74,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                     onClick={handleMenuClick}
                     className={`flex items-center gap-3 px-3 py-2 rounded-md font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
+                        ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300 shadow-md"
                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                     }`}
                   >

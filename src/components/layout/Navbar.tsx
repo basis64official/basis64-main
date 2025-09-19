@@ -20,7 +20,7 @@ export function Navbar({ sidebarOpen, setSidebarOpen }: NavbarProps) {
               aria-controls="logo-sidebar"
               type="button"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="inline-flex items-center order-1 sm:order-2 p-2 text-sm text-white rounded-lg hover:bg-neutral-700 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700"
+              className="inline-flex items-center order-1 sm:order-2 p-2 text-sm text-white rounded-lg hover:bg-neutral-700 focus:outline-none dark:text-white dark:hover:bg-neutral-700 cursor-pointer"
             >
               <span className="sr-only">Open sidebar</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">

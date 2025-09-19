@@ -84,10 +84,10 @@ export default function Home() {
 	}, [translateInput, switchLanguage]);
 
 	return (
-		<div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-10 px-4">
+		<div className="bg-gray-50 dark:bg-neutral-950 py-5 px-4">
 			<div className="container mx-auto">
 				{/* Header Section */}
-				<div className="mb-4 bg-white text-black dark:text-white dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 rounded-md shadow-sm p-5 space-y-2 text-center">
+				<div className="mb-4 bg-white text-black dark:text-white dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 rounded-md shadow-sm p-5 space-y-2 text-center">
 					<h2 className="text-lg font-semibold">Terjemahkan Bahasa Dayak Kenyah dengan mudah dan cepat!</h2>
 					<p className="text-base">Kamu dapat menerjemahkan bahasa Dayak Kenyah secara instan tanpa perlu menerjemahannya secara manual dalam waktu yang lama.</p>
 				</div>
@@ -118,7 +118,7 @@ export default function Home() {
 						<div className="relative">
 							<textarea
 								rows={8}
-								className="w-full p-4 text-base text-gray-900 bg-gray-50 border border-gray-200 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
+								className="w-full p-4 text-base text-gray-900 bg-gray-50 border border-gray-200 rounded-lg resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
 								placeholder={`Tulis teks ${inputTitle.toLowerCase()} di sini...`}
 								value={translateInput}
 								onChange={(e) => setTranslateInput(e.target.value)}

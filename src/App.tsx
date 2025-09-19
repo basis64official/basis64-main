@@ -202,7 +202,7 @@ export default function App() {
 
       <main
         className={`flex-1 ${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"
-          } ${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""} bg-gray-50 dark:bg-neutral-950 transition-all duration-500`}
+          } ${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""} bg-gray-50 dark:bg-neutral-950 transition-margin duration-500`}
       >
         <Routes>
           {pages.map(({ path, component: Component }) => (
@@ -222,7 +222,7 @@ export default function App() {
 
       <div
         className={`${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"
-          } transition-all duration-500 bg-gray-50 dark:bg-neutral-950`}
+          } transition-[margin] duration-500 bg-gray-50 dark:bg-neutral-950`}
       >
         {!shouldHideLayout && <Footer />}
 
