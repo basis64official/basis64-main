@@ -31,35 +31,34 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
 
   const menuItems = location.pathname.includes("admin")
     ? [
-        { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
-        { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
-        { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
-        { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/cms" },
-      ]
+      { id: "dashboard", label: "Dashboard", icon: "bi-speedometer2", to: "/admin/dashboard" },
+      { id: "sessions", label: "Manajemen sesi", icon: "bi-people", to: "/admin/sessions" },
+      { id: "database", label: "Database", icon: "bi-database", to: "/admin/database" },
+      { id: "cms", label: "CMS", icon: "bi-grid-3x2-gap", to: "/admin/cms" },
+    ]
     : [
-        { id: "home", label: "Penerjemah", icon: "bi-translate", to: "/" },
-        { id: "dev", label: "Kalkulator Subnetting", icon: "bi-ethernet", to: "/subnetting" },
-        { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
-        { id: "about", label: "Tentang kami", icon: "bi-info-square", to: "/about" },
-        { id: "docs", label: "Dokumentasi", icon: "bi-journals", to: "/docs" },
-      ];
+      { id: "home", label: "Halaman awal", icon: "bi-house", to: "/" },
+      // { id: "dev", label: "Kalkulator Subnetting", icon: "bi-ethernet", to: "/subnetting" },
+      { id: "about", label: "Tentang kami", icon: "bi-info-square", to: "/about" },
+      { id: "contact", label: "Hubungi kami", icon: "bi-person-lines-fill", to: "/contact" },
+      { id: "docs", label: "Dokumentasi", icon: "bi-journals", to: "/docs" },
+      { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
+    ];
 
   return (
     <>
       {/* Backdrop (mobile only) */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${
-          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         aria-hidden="true"
         onClick={() => setSidebarOpen(false)}
       ></div>
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white dark:bg-neutral-900 border-r border-gray-300 dark:border-neutral-700 shadow-sm transition-transform duration-500 ease-in-out ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white dark:bg-neutral-900 border-r border-gray-300 dark:border-neutral-700 shadow-sm transition-transform duration-500 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         aria-label="Sidebar"
       >
         <div className="h-full flex flex-col px-4 pb-6">
@@ -72,16 +71,14 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                   <Link
                     to={to}
                     onClick={handleMenuClick}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-md font-medium transition-all duration-200 ${
-                      isActive
+                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive
                         ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300 shadow-md"
                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
-                    }`}
+                      }`}
                   >
                     <i
-                      className={`bi ${icon} text-lg ${
-                        isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
-                      }`}
+                      className={`bi ${icon} text-lg ${isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
+                        }`}
                     />
                     <span>{label}</span>
                   </Link>

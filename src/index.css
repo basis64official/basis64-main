@@ -7,3 +7,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* definisi font custom */
+@theme {
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-serif: "Merriweather", serif;
+  --font-mono: "Fira Code", monospace;
+}
+
+@layer base {
+  html {
+    font-size: 90%; /* ini set root font-size jadi 90% */
+  }
+} 

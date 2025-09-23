@@ -1,8 +1,17 @@
-import { useEffect, useState } from "react";
-import useInfo from "../state/useInfo";
-import useNavigationBar from "../state/useNavigationBar";
-import { CookieManager } from "../utils/CookieManager";
-import { Button } from "../components/ui/";
+// import { Link } from 'react-router-dom';
+// import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import bgImage from '../assets/img/header.webp';
+import userImage from '../assets/img/user.webp';
+// import UserProfile from '../components/layout/UserProfile';
+// import useAuth from '../state/useAuth';
+import { FeatureList } from '../components/layout/FeatureList';
+import { AnimatedCounter } from '../components/ui/AnimatedCounter';
+import useInfo from '../state/useInfo';
+import useNavigationBar from '../state/useNavigationBar';
+import { useEffect, useState } from 'react';
+// import { apiFetch } from '../api/apiFetch';
+// import Login from './Login';
 
 export default function Home() {
 	const info = useInfo();
@@ -12,202 +21,79 @@ export default function Home() {
 		navigationBar.show();
 	}, []);
 
-	const URL =
-		"https://dayak-kenyah-translator.basis64computer.workers.dev";
-	const [switchLanguage, setSwitchLanguage] = useState(false);
-	const [translateInput, setTranslateInput] = useState("");
-	const [translateOutput, setTranslateOutput] = useState("");
-	const [debounceTimer, setDebounceTimer] = useState<number | null>(null);
-
-	const inputTitle = switchLanguage ? "Dayak Kenyah" : "Indonesia";
-	const outputTitle = switchLanguage ? "Indonesia" : "Dayak Kenyah";
-
-	const handleCopy = async (text: string) => {
-		if (!text) return;
-		try {
-			await navigator.clipboard.writeText(text);
-		} catch (err) {
-			console.error("Failed to copy text: ", err);
-		}
-	};
-
-	const handlePaste = async () => {
-		try {
-			const text = await navigator.clipboard.readText();
-			setTranslateInput(text);
-		} catch (err) {
-			console.error("Failed to paste text: ", err);
-		}
-	};
-
-	const handleRead = (text: string) => {
-		if (!text.trim()) return;
-		const audio = new Audio(
-			"https://cors-anywhere.herokuapp.com/https://translate.google.com/translate_tts?ie=UTF-8&tl=id-ID&client=tw-ob&q=" +
-			encodeURI(text)
-		);
-		audio.play();
-	};
-
-	const translateText = async () => {
-		try {
-			const response = await fetch(`${URL}/api/translate`, {
-				method: "POST",
-				body: JSON.stringify({
-					action: "translate",
-					"X-Session-ID": CookieManager.getCookie("session_id") || "",
-					"X-Authorization":
-						CookieManager.getCookie("access_token") || "",
-					data: { translate: translateInput },
-					invert: switchLanguage,
-				}),
-			});
-			const result = await response.json();
-			setTranslateOutput(result.result || "");
-		} catch (err) {
-			setTranslateOutput("Terjadi kesalahan saat menerjemahkan.");
-		}
-	};
+	const [changelog, setChangelog] = useState("Loading...");
 
 	useEffect(() => {
-		if (!translateInput.trim()) {
-			setTranslateOutput("");
-			return;
-		}
-		if (debounceTimer) clearTimeout(debounceTimer);
-		setTranslateOutput("Menerjemahkan...");
-		const timer = setTimeout(() => {
-			translateText();
-		}, 1000);
-		setDebounceTimer(timer);
-		return () => clearTimeout(timer);
-	}, [translateInput, switchLanguage]);
+		(async () => {
+			try {
+				const response = await fetch('https://cdn.jsdelivr.net/gh/basis64computer/public/changelog.txt');
+				const data = await response.text();
+				setChangelog(data);
+				// Update state with data
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		})();
+	}, []);
 
 	return (
-		<div className="bg-gray-50 dark:bg-neutral-950 py-5 px-4">
-			<div className="container mx-auto">
-				{/* Header Section */}
-				<div className="mb-4 bg-white text-black dark:text-white dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 rounded-md shadow-sm p-5 space-y-2 text-center">
-					<h2 className="text-lg font-semibold">Terjemahkan Bahasa Dayak Kenyah dengan mudah dan cepat!</h2>
-					<p className="text-base">Kamu dapat menerjemahkan bahasa Dayak Kenyah secara instan tanpa perlu menerjemahannya secara manual dalam waktu yang lama.</p>
-				</div>
+		<>
+			<header className="relative min-h-[220px] sm:min-h-[320px] py-4 sm:py-8 overflow-hidden flex items-center justify-center text-white">
+				{/* Background */}
+				<div
+					className="absolute inset-0 h-full w-full bg-cover bg-center"
+					style={{ backgroundImage: `url(${bgImage})` }}
+				/>
 
-				{/* Main Translator Card */}
-				<div className="relative bg-white dark:bg-neutral-800 rounded-md shadow-lg border border-gray-300 dark:border-neutral-700 p-6 space-y-4">
-					{/* Language Titles and Controls */}
-					<div className="flex justify-between items-center mb-4">
-						<div className="flex items-center space-x-2">
-							<span className="font-semibold text-gray-800 dark:text-gray-100">{inputTitle}</span>
-							<i className="bi bi-arrow-right text-gray-400"></i>
-							<span className="font-semibold text-gray-800 dark:text-gray-100">{outputTitle}</span>
+				{/* Overlay */}
+				<div className="absolute inset-0 bg-black opacity-70" />
+
+				{/* Konten */}
+				<div className="relative z-10 text-center px-4 sm:px-16">
+					<div className="text-white mb-8">
+						<h1 className="mt-4 sm:mt-0 text-base sm:text-lg font-bold">
+							Terjemahkan Bahasa Dayak Kenyah dengan mudah dan cepat!
+						</h1>
+						<p className="text-sm sm:text-lg mt-2 mb-4 max-w-6xl mx-auto">
+							Kamu dapat menerjemahkan bahasa Dayak Kenyah secara instan tanpa perlu menerjemahannya secara manual dalam waktu yang lama. BASIS-64 adalah SaaS inovatif yang berfokus pada AI dan kamu juga dapat mendukung kami dengan cara menggunakan penerjemah Dayak Kenyah atau memberikan kami umpan balik.
+						</p>
+					</div>
+
+					<div className="sm:flex justify-between gap-4" >
+						<div className="flex-1 bg-white/15 border border-white/50 shadow-md shadow-white/10 text-[color:var(--color-text-primary)] text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-2 p-2">
+							<p className="font-semibold text-sm sm:text-lg">Jumlah pengunjung</p>
+							<p className="font-normal text-base sm:text-xl"><AnimatedCounter target={info.visitors} duration={2000} /> orang</p>
 						</div>
-						<div className="flex items-center space-x-2">
-							<span className="text-sm font-medium text-gray-500 dark:text-gray-400">Mode</span>
-							<select className="appearance-none bg-neutral-100 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-full py-1 px-3 text-sm font-medium cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 dark:text-gray-100">
-								<option value="standar">Standar</option>
-							</select>
-							<div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-								<i className="bi bi-caret-down-fill text-xs text-neutral-700 dark:text-neutral-300"></i>
-							</div>
+						<div className="flex-1 bg-white/15 border border-white/50 shadow-md shadow-white/10 text-[color:var(--color-text-primary)] text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-2 p-2" hidden>
+							<p className="font-semibold text-sm sm:text-lg">Akurasi penerjemah</p>
+							<p className="font-normal text-base sm:text-xl"><AnimatedCounter target={info.accuracy} duration={2000} />%</p>
+						</div>
+						<div className="flex-1 bg-white/15 border border-white/50 shadow-md shadow-white/10 text-[color:var(--color-text-primary)] text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-2 p-2 hidden sm:block">
+							<p className="font-semibold text-sm sm:text-lg">Jumlah kosakata</p>
+							<p className="font-normal text-base sm:text-xl"><AnimatedCounter target={info.dictionary} duration={2000} /> kata</p>
 						</div>
 					</div>
 
-					{/* Input & Output Textareas */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						{/* Input */}
-						<div className="relative">
-							<textarea
-								rows={8}
-								className="w-full p-4 text-base text-gray-900 bg-gray-50 border border-gray-200 rounded-lg resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-								placeholder={`Tulis teks ${inputTitle.toLowerCase()} di sini...`}
-								value={translateInput}
-								onChange={(e) => setTranslateInput(e.target.value)}
-							/>
-							<div className="absolute bottom-2 right-2 flex space-x-2 opacity-70 hover:opacity-100 transition-opacity">
-								<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={handlePaste}>
-									<i className="bi bi-clipboard2-plus text-xl"></i>
-								</button>
-								<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleCopy(translateInput)}>
-									<i className="bi bi-copy text-xl"></i>
-								</button>
-								<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateInput)}>
-									<i className="bi bi-volume-up-fill text-xl"></i>
-								</button>
-							</div>
-						</div>
 
-						{/* Output */}
-						<div className="relative">
-							<textarea
-								rows={8}
-								readOnly
-								className="w-full p-4 text-base text-gray-900 bg-gray-50 border border-gray-200 rounded-lg resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-								placeholder="Hasil terjemahan muncul di sini..."
-								value={translateOutput}
-							/>
-							<div className="absolute bottom-2 right-2 flex space-x-2 opacity-70 hover:opacity-100 transition-opacity">
-								<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleCopy(translateOutput)}>
-									<i className="bi bi-copy text-xl"></i>
-								</button>
-								<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateOutput)}>
-									<i className="bi bi-volume-up-fill text-xl"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-
-					{/* Switch Language Button */}
-					<div className="flex justify-center mt-4">
-						<Button
-							onClick={() => setSwitchLanguage(!switchLanguage)}
-							variant="blue"
-							className="w-full"
-						>
-							<i className="bi bi-arrow-left-right text-lg mr-2"></i>
-							Beralih Bahasa
-						</Button>
-					</div>
-
-				</div>
-
-				{/* Additional Components */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8" hidden >
-					{/* Tips Section */}
-					<div className="p-6 bg-white dark:bg-neutral-800 rounded-md shadow-lg border border-gray-200 dark:border-neutral-700">
-						<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Tips Penerjemah</h3>
-						<ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 text-md">
-							<li>Gunakan kalimat yang jelas dan sederhana untuk hasil terjemahan yang lebih akurat.</li>
-							<li>Untuk terjemahan yang lebih kompleks, coba gunakan **mode AI**.</li>
-							<li>Jika terjemahan tidak tepat, periksa kembali ejaan kata-kata atau gunakan kalimat lain.</li>
-							<li>Dukung kami dengan mengirimkan kata-kata baru atau koreksi melalui fitur "Kirim Kata".</li>
-						</ul>
-					</div>
-
-					{/* Kirim Kata & Statistik Section */}
-					<div className="space-y-6">
-						{/* Kirim Kata Card */}
-						<div className="p-6 bg-white dark:bg-neutral-800 rounded-md shadow-lg border border-gray-200 dark:border-neutral-700">
-							<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Kirim Kata</h3>
-							<p className="text-gray-600 dark:text-gray-400 mb-4">
-								Bantu kami memperkaya kamus dengan mengirimkan kata atau frasa baru.
-							</p>
-							<button className="w-full py-2 px-4 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition-colors">
-								Kirim Kata
-							</button>
-						</div>
-
-						{/* Statistik Card */}
-						<div className="p-6 bg-white dark:bg-neutral-800 rounded-md shadow-lg border border-gray-200 dark:border-neutral-700">
-							<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Statistik</h3>
-							<ul className="space-y-2 text-gray-600 dark:text-gray-400 text-md">
-								<li>Jumlah Kata dalam Kamus: **1,234**</li>
-								<li>Jumlah Terjemahan Hari Ini: **567**</li>
-								<li>Kontributor Aktif: **12**</li>
-							</ul>
-						</div>
+					<div className="sm:flex justify-between pt-4 gap-4 w-full" hidden>
+						<button className="w-full flex-1 cursor-pointer bg-white/15 border border-white/50 hover:bg-blue-500/15 hover:border-blue-500/50 hover:text-blue-200 shadow-md shadow-white/10 text-[color:var(--color-text-primary)] text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-4 p-2">
+							<p className="font-semibold text-base sm:text-lg">Berikan kami umpan balik</p>
+						</button>
+						<button className="hidden w-full flex-1 cursor-pointer bg-white/15 border border-white/50 hover:bg-blue-500/15 hover:border-blue-500/50 hover:text-blue-200 shadow-md shadow-white/10 text-[color:var(--color-text-primary)] text-sm sm:text-base hover:scale-105 hover:shadow-lg transition-transform duration-300 mb-4 p-2">
+							<p className="font-semibold text-base sm:text-lg">Tambahkan kosakata</p>
+						</button>
 					</div>
 				</div>
-			</div>
-		</div>
+
+
+			</header>
+
+			<div className='hidden container mt-4 mx-4 p-4 bg-white shadow-sm rounded-sm border border-gray-300 dark:border-neutral-700 dark:bg-neutral-900 text-center'>
+    <h1 className='text-black dark:text-white text-lg'>Coba fitur kami sekarang!</h1>
+    <p className='text-gray-600 dark:text-gray-400'>Klik salah satu fitur di bawah ini untuk memulai.</p>
+</div>
+
+			<FeatureList />
+		</>
 	);
 }

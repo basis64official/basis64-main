@@ -12,7 +12,7 @@ export class CookieManager {
     }
     const json = await status.json();
     console.log(json);
-    setValue(json.visitors, 70, 800);
+    setValue(json.visitors, 70, 1700);
   }
   static async check(): Promise<boolean> {
     let sessionId = this.getCookie("session_id");
