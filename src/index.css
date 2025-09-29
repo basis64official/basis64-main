@@ -16,6 +16,6 @@
 
 @layer base {
   html {
-    font-size: 90%; /* ini set root font-size jadi 90% */
+    font-size: clamp(14px, 0.9vw, 18px);
   }
-} 
+}

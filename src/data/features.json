@@ -1,0 +1,28 @@
+[
+  {
+    "id": "translator-dayak-kenyah",
+    "title": "Translator Dayak Kenyah (Gratis)",
+    "description": "Penerjemah bahasa Dayak Kenyah v2.1 dengan penerjemahan NLP (Natural Language Proccessing) yang memungkinkan penerjemahan yang akurat",
+    "category": "Bahasa",
+    "thumbnail": "resources/translator-dayak-kenyah/thumbnail.webp",
+    "destination": "<internal>",
+    "premiumLevel": 0,
+    "isLogin": false,
+    "creator": "Admin",
+    "creatorPhoto": "assets/img/admin.webp",
+    "date": "16 Juli 2024 &middot 09:00 AM"
+  },
+  {
+    "id": "subnetting",
+    "title": "Kalkulator Subnet IP",
+    "description": "Gunakan kalkulator subnet IP ini untuk mempermudah dalam melakukan subnetting.",
+    "category": "Kalkulator",
+    "thumbnail": "resources/subnetting/thumbnail.webp",
+    "destination": "<internal>",
+    "premiumLevel": 0,
+    "isLogin": false,
+    "creator": "Admin",
+    "creatorPhoto": "assets/img/admin.webp",
+    "date": "30 Januari 2025 &middot 11:00 PM"
+  }
+]

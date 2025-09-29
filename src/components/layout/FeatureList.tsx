@@ -16,7 +16,8 @@ export const FeatureList = () => {
           key={feature.id}
           to={feature.destination === "<internal>" ? `/features/${feature.id}` : undefined}
           href={feature.destination.startsWith("http") ? feature.destination : undefined}
-          imageSrc={`https://cdn.jsdelivr.net/gh/basis64computer/public/thumbnails/${feature.id}.webp`}
+          // imageSrc={`https://cdn.jsdelivr.net/gh/basis64computer/public/thumbnails/${feature.id}.webp`}
+          imageSrc={`/thumbnails/${feature.id}.webp`}
           title={feature.title}
           description={feature.description}
           category={feature.category}

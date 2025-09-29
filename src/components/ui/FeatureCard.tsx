@@ -58,14 +58,14 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
         src={imageSrc}
         alt={title}
       />
-      <div className="p-5 flex flex-col flex-1 justify-between">
+      <div className="p-5 flex flex-col flex-1">
         <h4 className="mb-2 text-base sm:text-lg font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h4>
-        <p className="mb-3 text-sm sm:text-base font-normal text-gray-700 dark:text-gray-400">
+        <p className="mb-3 text-sm sm:text-sm font-normal text-gray-700 dark:text-gray-400">
           {description}
         </p>
-        <div className="mt-auto flex flex-wrap gap-2">
+        <div className="mt-auto flex flex-wrap gap-2" hidden>
           {category && (
             <span className="bg-blue-100 text-blue-800 border border-blue-400 text-sm rounded px-2 py-0.5 dark:bg-blue-900 dark:text-blue-300 dark:border-blue-600 font-medium">
               {category}

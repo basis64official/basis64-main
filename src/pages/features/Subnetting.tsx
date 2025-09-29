@@ -98,33 +98,37 @@ const SubnetCalculatorPage: React.FC = () => {
   const [ip, setIp] = useState("192.168.1.1");
   const [prefix, setPrefix] = useState(24);
   const [result, setResult] = useState<Record<string, string | number>>({});
-  const [activeTab, setActiveTab] = useState<"ipv4" | "ipv6">("ipv4");
+  const [activeTab, setActiveTab] = useState<"IPv4" | "Artikel">("IPv4");
 
   const handleCalculate = () => {
     if (!ipCheck(ip)) return;
     setResult(getSubnetInfo(ip, prefix));
   };
 
+  const tabIcons = {
+    'IPv4': 'ethernet',
+    'Artikel': 'blockquote-left'
+  }
+
   return (
     <div className="p-6 mx-auto">
       {/* Tabs */}
       <div className="flex gap-6 border-b border-gray-200 dark:border-neutral-700 mb-8">
-        {["ipv4", "ipv6"].map((tab) => (
+        {(["IPv4", "Artikel"] as Array<"IPv4" | "Artikel">).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab as "ipv4" | "ipv6")}
-            className={`pb-2 text-base font-medium transition-colors ${
-              activeTab === tab
-                ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
-                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            }`}
+            onClick={() => setActiveTab(tab)}
+            className={`pb-2 text-base font-medium transition-colors cursor-pointer ${activeTab === tab
+              ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
+              : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              }`}
           >
-            {tab.toUpperCase()}
+            <i className={`bi bi-${tabIcons[tab]} me-2`}></i> {tab}
           </button>
         ))}
       </div>
 
-      {activeTab === "ipv4" && (
+      {activeTab === "IPv4" && (
         <div className="space-y-8">
           {/* Input */}
           <div>
@@ -190,17 +194,39 @@ const SubnetCalculatorPage: React.FC = () => {
         </div>
       )}
 
-      {activeTab === "ipv6" && (
-        <div className="rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-6">
-          <p className="text-base text-gray-500 dark:text-gray-400">
-            Fitur untuk{" "}
-            <span className="font-medium text-gray-900 dark:text-white">
-              IPv6
-            </span>{" "}
-            akan hadir nanti 🚀
+      {activeTab === "Artikel" && (
+        <article className="prose prose-lg dark:prose-invert max-w-none bg-white dark:bg-neutral-800 rounded-md border border-gray-300 dark:border-neutral-700 shadow-sm p-6">
+          <h1 className="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+            Mengenal Subnetting dalam Jaringan Komputer
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Subnetting adalah teknik dalam jaringan komputer untuk membagi satu jaringan IP besar menjadi beberapa jaringan kecil (subnet). Dengan cara ini, penggunaan alamat IP bisa menjadi lebih efisien dan administrasi jaringan menjadi lebih mudah.
           </p>
-        </div>
-      )}
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Contoh sederhananya, jika sebuah perusahaan mendapat alokasi jaringan <code>192.168.1.0/24</code>, subnetting memungkinkan jaringan tersebut dibagi menjadi beberapa subnet yang lebih kecil, misalnya <code>/26</code> atau <code>/28</code>, sesuai kebutuhan jumlah host.
+          </p>
+          <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800 dark:text-gray-100">
+            Mengapa Subnetting Penting?
+          </h2>
+          <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 leading-relaxed space-y-2">
+            <li>Menghemat alamat IP yang terbatas.</li>
+            <li>Meningkatkan keamanan dengan memisahkan segmen jaringan.</li>
+            <li>Mengurangi lalu lintas broadcast di dalam jaringan.</li>
+            <li>Memudahkan manajemen jaringan berskala besar.</li>
+          </ul>
+          <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800 dark:text-gray-100">
+            Kesimpulan
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+            Memahami konsep subnetting sangat penting bagi siapa saja yang berkecimpung di dunia jaringan komputer. Dengan menguasainya, kita dapat merancang jaringan yang lebih efisien, aman, dan mudah diatur. Alat kalkulator subnet seperti yang ada di halaman ini bisa membantu mempercepat proses perhitungan.
+          </p>
+          <p className="mt-6 text-gray-500 dark:text-gray-400 italic">
+            Ditulis oleh: Tim Basis64 · Dipublikasikan pada 29 September 2025
+          </p>
+        </article>
+      )
+
+      }
     </div>
   );
 };

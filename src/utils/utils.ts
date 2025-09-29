@@ -83,6 +83,13 @@ export class Utils {
       .toLowerCase(); // ubah semua jadi lowercase
   }
 
+  static formatFeatureName(path: string): string {
+    const lastSegment = path.split("/").pop() || "";
+    return lastSegment
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
   static formatTimestamp(timestamp: number): string {
     const date = new Date(timestamp);
 

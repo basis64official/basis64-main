@@ -22,9 +22,9 @@ const Contact = () => {
             <h1 className='text-lg mb-2'>Discord: <a href='https://discord.gg/gywRbyK8VN/' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://discord.gg/gywRbyK8VN/</a></h1>
             <h1 className='text-lg mb-2'>Telegram: <a href='https://t.me/basis64computer' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://t.me/basis64computer/</a></h1>
           </div>
-          <div className='grid grid-cols-2'>
+          <div className='grid sm:grid-cols-2'>
             <Button as='a' href="https://wa.me/+6282211509216" variant="whatsapp" className="mr-4 mb-4">
-              <i className="bi bi-whatsapp mr-2"></i> Hubungi kami melalui WhatsApp
+              <i className="bi bi-whatsapp mr-2"></i> Hubungi melalui WhatsApp
             </Button>
             <Button as='a' href="https://www.instagram.com/basis64computer" variant="instagram" className="mr-4 mb-4">
               <i className="bi bi-instagram mr-2"></i> Lihat Instagram kami

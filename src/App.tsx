@@ -20,6 +20,7 @@ import useAuth from "./state/useAuth";
 import { featuresPages } from "./pages/features";
 import { useNavStore } from "./state/useNavStore";
 import { useFeatureStore } from "./state/useFeatureStore";
+import featuresData from "./data/features.json";
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -69,6 +70,11 @@ export default function App() {
 
     return () => evtSource.close();
   }, [auth.user, auth.email]);*/
+
+  useEffect(() => {
+    // efek kayak "fetch", tapi cuma set state dari import
+    setFeatures(featuresData);
+  }, []);
 
 
   useEffect(() => {
@@ -127,12 +133,14 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    fetch("https://cdn.jsdelivr.net/gh/basis64computer/public/features.json")
-      .then((res) => res.json())
-      .then((data) => setFeatures(data))
-      .catch((err) => console.error("Error loading CMS features:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://cdn.jsdelivr.net/gh/basis64computer/public/features.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setFeatures(data))
+  //     .catch((err) => console.error("Error loading CMS features:", err));
+  // }, []);
+
+  
 
   useEffect(() => {
     try {

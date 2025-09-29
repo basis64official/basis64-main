@@ -4,6 +4,7 @@ import { Button } from "../ui";
 import useAuth from "../../state/useAuth";
 import useLoginModal from "../../state/useLoginModal";
 import { AuthManager } from "../../utils/AuthManager";
+import { Utils } from "../../utils/utils";
 
 type SidebarProps = {
   sidebarOpen: boolean;
@@ -45,6 +46,8 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       { id: "feedback", label: "Feedback", icon: "bi-chat-right-quote", to: "/feedback" },
     ];
 
+  const color = "neutral";
+
   return (
     <>
       {/* Backdrop (mobile only) */}
@@ -64,27 +67,43 @@ export function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
         <div className="h-full flex flex-col px-4 pb-6">
           {/* Menu list */}
           <ul className="flex-1 overflow-y-auto no-scrollbar space-y-1 text-sm">
-            {menuItems.map(({ id, label, icon, to }) => {
-              const isActive = location.pathname === to;
-              return (
-                <li key={id}>
-                  <Link
-                    to={to}
-                    onClick={handleMenuClick}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${isActive
-                        ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300 shadow-md"
+            {
+              (!menuItems.some(item => item.to === location.pathname)) ? (
+                <>
+                <Link
+                  to={location}
+                  onClick={handleMenuClick}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300 shadow-md`}
+                >
+                  <i className="bi bi-stars text-white text-lg"></i>
+                  <span>{Utils.formatFeatureName(location.pathname)}</span>
+                </Link>
+                <hr className="border-gray-300 dark:border-neutral-700 mt-4"/>
+                </>) : <></>}
+
+            {
+
+              menuItems.map(({ id, label, icon, to }) => {
+                const isActive = location.pathname === to;
+                return (
+                  <li key={id}>
+                    <Link
+                      to={to}
+                      onClick={handleMenuClick}
+                      className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive
+                        ? `bg-gradient-to-r from-blue-700 to-blue-500 text-white group hover:from-blue-500 hover:to-blue-700 focus:ring-blue-400 transition-colors duration-300 shadow-md`
                         : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
-                      }`}
-                  >
-                    <i
-                      className={`bi ${icon} text-lg ${isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
                         }`}
-                    />
-                    <span>{label}</span>
-                  </Link>
-                </li>
-              );
-            })}
+                    >
+                      <i
+                        className={`bi ${icon} text-lg ${isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
+                          }`}
+                      />
+                      <span>{label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
 
           {/* Bottom login section */}
