@@ -21,6 +21,7 @@ import { featuresPages } from "./pages/features";
 import { useNavStore } from "./state/useNavStore";
 import { useFeatureStore } from "./state/useFeatureStore";
 import featuresData from "./data/features.json";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -140,7 +141,7 @@ export default function App() {
   //     .catch((err) => console.error("Error loading CMS features:", err));
   // }, []);
 
-  
+
 
   useEffect(() => {
     try {
@@ -209,22 +210,90 @@ export default function App() {
       )}
 
       <main
-        className={`flex-1 ${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"
-          } ${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""} bg-gray-50 dark:bg-neutral-950 transition-margin duration-500`}
+        className={`relative flex-1 overflow-hidden
+    ${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"}
+    ${(!shouldHideLayout && !navigatonBar) ? "pt-16" : ""}
+    bg-gray-50 dark:bg-neutral-950 transition-margin duration-500`}
       >
-        <Routes>
-          {pages.map(({ path, component: Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-          {adminPages.map(({ path, component: Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-          {featuresPages.map(({ path, component: Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnimatePresence mode="wait" {...({} as any)} // TypeScript safe
+        >
+          <Routes location={location} key={location.pathname}>
+            {pages.map(({ path, component: Component }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <motion.div
+                    className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    {...({} as any)} // TypeScript safe
+                  >
+                    <Component />
+                  </motion.div>
+                }
+              />
+            ))}
+
+            {adminPages.map(({ path, component: Component }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <motion.div
+                    className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    {...({} as any)} // TypeScript safe
+                  >
+                    <Component />
+                  </motion.div>
+                }
+              />
+            ))}
+
+            {featuresPages.map(({ path, component: Component }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <motion.div
+                    className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    {...({} as any)} // TypeScript safe
+                  >
+                    <Component />
+                  </motion.div>
+                }
+              />
+            ))}
+
+            <Route
+              path="*"
+              element={
+                <motion.div
+                  className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  {...({} as any)} // TypeScript safe
+                >
+                  <NotFound />
+                </motion.div>
+              }
+            />
+          </Routes>
+        </AnimatePresence>
       </main>
+
 
       {useLoginModal().modal ? <LoginModal /> : <></>}
 
