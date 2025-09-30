@@ -16,20 +16,6 @@ export default function Home() {
 		navigationBar.show();
 	}, []);
 
-	const [changelog, setChangelog] = useState("Loading...");
-
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await fetch('https://cdn.jsdelivr.net/gh/basis64computer/public/changelog.txt');
-				const data = await response.text();
-				setChangelog(data);
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		})();
-	}, []);
-
 	return (
 		<>
 			<header className="relative min-h-[320px] sm:min-h-[340px] flex items-center justify-center overflow-hidden text-white bg-black">
