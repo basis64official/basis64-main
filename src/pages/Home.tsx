@@ -24,7 +24,7 @@ export default function Home() {
 					src={bgImage}
 					alt="Header Background"
 					className="absolute inset-0 w-full h-full object-cover opacity-60"
-					loading="eager"
+					loading="lazy"
 					// @ts-ignore
 					fetchpriority="high"
 				/>
