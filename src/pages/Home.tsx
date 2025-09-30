@@ -39,7 +39,8 @@ export default function Home() {
 					alt="Header Background"
 					className="absolute inset-0 w-full h-full object-cover opacity-60"
 					loading="eager"
-					// fetchpriority="high"
+					// @ts-ignore
+					fetchpriority="high"
 				/>
 
 				{/* Overlay */}
