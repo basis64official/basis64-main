@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/600.css";
+
 
 @tailwind base;
 @tailwind components;
