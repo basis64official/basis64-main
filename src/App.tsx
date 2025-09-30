@@ -22,6 +22,7 @@ import { useNavStore } from "./state/useNavStore";
 import { useFeatureStore } from "./state/useFeatureStore";
 import featuresData from "./data/features.json";
 import { AnimatePresence, motion } from "framer-motion";
+import { lazyLoadScript } from "./utils/lazyLoadScript";
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -48,6 +49,22 @@ export default function App() {
 
   useEffect(() => {
     setFeatures(featuresData);
+  }, []);
+
+  useEffect(() => {
+    // Lazy load Google Sign-In
+    lazyLoadScript({
+      src: "https://accounts.google.com/gsi/client",
+      async: true,
+      defer: true
+    }).then(() => console.log("Google Sign-In loaded"));
+
+    // Lazy load Google Ads
+    lazyLoadScript({
+      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093085880121137",
+      async: true,
+      crossorigin: "anonymous"
+    }).then(() => console.log("Google Ads loaded"));
   }, []);
 
 
