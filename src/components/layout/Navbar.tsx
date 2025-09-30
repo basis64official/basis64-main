@@ -1,6 +1,6 @@
 import UserProfile from './UserProfile'
 
-import Logo from '../../assets/img/logo.png'
+import Logo from '../../assets/img/logo.webp'
 import { Link } from 'react-router-dom'
 
 interface NavbarProps {
