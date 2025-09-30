@@ -153,7 +153,7 @@ export default function TranslatorDayakKenyah() {
 											<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleCopy(translateInput)}>
 												<i className="bi bi-copy text-xl"></i>
 											</button>
-											<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateInput)}>
+											<button hidden className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateInput)}>
 												<i className="bi bi-volume-up-fill text-xl"></i>
 											</button>
 										</div>
@@ -172,7 +172,7 @@ export default function TranslatorDayakKenyah() {
 											<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleCopy(translateOutput)}>
 												<i className="bi bi-copy text-xl"></i>
 											</button>
-											<button className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateOutput)}>
+											<button hidden className="p-1 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => handleRead(translateOutput)}>
 												<i className="bi bi-volume-up-fill text-xl"></i>
 											</button>
 										</div>
