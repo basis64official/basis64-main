@@ -73,7 +73,6 @@ export default function App() {
   }, [auth.user, auth.email]);*/
 
   useEffect(() => {
-    // efek kayak "fetch", tapi cuma set state dari import
     setFeatures(featuresData);
   }, []);
 
