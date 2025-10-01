@@ -43,9 +43,15 @@ export default function App() {
   const fromHome = useNavStore((s) => s.fromHome);
   const getFeatureById = useFeatureStore((s) => s.getFeatureById);
 
-  if (!fromHome && location.pathname.startsWith('/features/')) {
-    return <Navigate to="/" replace />;
-  }
+  const shouldRedirect = !fromHome && location.pathname.startsWith('/features/');
+
+  // useEffect(() => {
+  //   console.log(fromHome)
+  //   if (shouldRedirect) {
+  //     navigate("/", { replace: true });
+  //   }
+  // }, [shouldRedirect, navigate]);
+
 
   useEffect(() => {
     setFeatures(featuresData);
@@ -200,7 +206,7 @@ export default function App() {
       )}
 
       <main
-        className={`relative flex-1 overflow-hidden
+        className={`flex-1
     ${sidebarOpen && !shouldHideLayout && !navigatonBar.hidden ? "sm:ml-64" : "sm:ml-0"}
     ${(!shouldHideLayout && !navigatonBar) ? "pt-16" : ""}
     bg-gray-50 dark:bg-neutral-950 transition-margin duration-500`}
@@ -215,7 +221,7 @@ export default function App() {
                   path={path}
                   element={
                     <motion.div
-                      className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                      className={`${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -234,7 +240,7 @@ export default function App() {
                   path={path}
                   element={
                     <motion.div
-                      className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                      className={`${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -253,7 +259,7 @@ export default function App() {
                   path={path}
                   element={
                     <motion.div
-                      className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                      className={`${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -270,7 +276,7 @@ export default function App() {
                 path="*"
                 element={
                   <motion.div
-                    className={`absolute inset-0 ${(!shouldHideLayout && !navigatonBar.hidden) ? "top-16" : ""}`}
+                    className={`${(!shouldHideLayout && !navigatonBar.hidden) ? "pt-16" : ""}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
