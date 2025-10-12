@@ -10,7 +10,7 @@ interface NavbarProps {
 
 export function Navbar({ sidebarOpen, setSidebarOpen }: NavbarProps) {
   return (
-    <nav className="fixed top-0 z-50 w-full bg-gradient-to-r from-neutral-900 to-neutral-800 border-b border-neutral-700 dark:bg-neutral-900 dark:border-neutral-700 shadow-md">
+    <nav className="fixed top-0 z-50 w-full bg-neutral-900 border-b border-neutral-800 dark:bg-neutral-900 dark:border-neutral-700 shadow-md">
       <div className="px-3 py-2 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end">
