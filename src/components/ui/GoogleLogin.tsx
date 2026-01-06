@@ -17,7 +17,7 @@ const GoogleLogin = ({ isDarkMode }: Props) => {
     if (typeof google !== "undefined") {
       // @ts-ignore
       google.accounts.id.initialize({
-        client_id: "883133646995-j5adre0hvaooif1gs83800u91m7s1u8c.apps.googleusercontent.com",
+        client_id: "1094433232700-jsu9sn9blotpog8u02tivd9vhqobs9n2.apps.googleusercontent.com",
         callback: handleSignIn,
       });
     }

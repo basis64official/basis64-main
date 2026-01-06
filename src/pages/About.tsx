@@ -27,7 +27,7 @@ export default function About() {
           {/* About Box */}
           <div className="bg-white border border-gray-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white rounded-md p-6 mx-auto text-gray-700 shadow-xs transition duration-300 max-w-3xl">
             <p className="mb-4">
-              BASIS-64 adalah platform SaaS (Software as a Service) yang fokus pada pengembangan AI dan neural network.
+              BASIS-64 adalah platform SaaS (Software as a Service) dan juga penyedia layanan web.
             </p>
             <p className="mb-4">
               Salah satu proyek kami adalah penerjemah bahasa Dayak Kenyah. Penerjemah ini mampu memahami konteks kalimat dan menyusun ulang kata, misalnya:
@@ -45,8 +45,8 @@ export default function About() {
           <div className="mt-6 text-gray-600 dark:text-gray-300 text-sm max-w-3xl mx-auto text-center">
             <p>
               Untuk pertanyaan atau masukan, hubungi kami di{' '}
-              <a href="mailto:basis64computer@gmail.com" className="text-sky-600 hover:underline">
-                basis64computer@gmail.com
+              <a href="mailto:official@basis64.com" className="text-sky-600 hover:underline">
+                official@basis64.com
               </a>
             </p>
             <p className="mt-2">

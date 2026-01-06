@@ -16,7 +16,7 @@ const Contact = () => {
         <div className="text-black dark:text-white">
           <hr className='border-gray-300 dark:border-neutral-700 my-4' />
           <div className='mb-4'>
-            <h1 className='text-lg mb-2'>Email: basis64computer@gmail.com</h1>
+            <h1 className='text-lg mb-2'>Email: official@basis64.com</h1>
             <h1 className='text-lg mb-2'>Whatsapp: +62 822-1150-9216</h1>
             <h1 className='text-lg mb-2'>Instagram: @basis64computer</h1>
             <h1 className='text-lg mb-2'>Discord: <a href='https://discord.gg/gywRbyK8VN/' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://discord.gg/gywRbyK8VN/</a></h1>
@@ -35,7 +35,7 @@ const Contact = () => {
             <Button as='a' href="https://discord.gg/gywRbyK8VN/" variant="discord" className="mr-4 mb-4">
               <i className="bi bi-discord mr-2"></i> Bergabung ke Discord
             </Button>
-            <Button as='a' href="mailto:basis64computer@gmail.com" variant="gray" className="mr-4 mb-4">
+            <Button as='a' href="mailto:official@basis64.com" variant="gray" className="mr-4 mb-4">
               <i className="bi bi-envelope mr-2"></i> Hubungi melalui email
             </Button>
             <Button as='link' to="/feedback" variant="blue" className="mr-4 mb-4">
