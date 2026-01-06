@@ -7,6 +7,7 @@ import { FeatureList } from '../components/layout/FeatureList';
 import { AnimatedCounter } from '../components/ui/AnimatedCounter';
 import useInfo from '../state/useInfo';
 import useNavigationBar from '../state/useNavigationBar';
+import SEO from '../components/SEO';
 
 export default function Home() {
 	const info = useInfo();
@@ -18,6 +19,11 @@ export default function Home() {
 
 	return (
 		<>
+			<SEO
+				name='BASIS-64 - Penerjemah Dayak Kenyah'
+				description='Terjemahkan bahasa Dayak Kenyah secara instan dengan BASIS-64. Praktis, cepat, dan hemat waktu tanpa perlu menerjemahkan manual.'
+				keys='BASIS-64, terjemahan Dayak Kenyah, translate Dayak Kenyah, bahasa Dayak Kenyah, penerjemah Dayak Kenyah, Dayak Kenyah translator, alat translate Dayak Kenyah, translate cepat Dayak Kenyah, bahasa lokal Kalimantan, aplikasi translate bahasa dayak kenyah, translate kenyah ke indonesia, kamus bahasa dayak kenyah, translate indonesia ke kenyah, bahasa dayak kenyah ke indonesia, kenyah translate, translate dayak kenyah ke indonesia, translate bahasa kalimantan timur, bahasa dayak kaltim, kamus dayak kenyah online, belajar bahasa dayak kenyah, translate bahasa daerah kalimantan timur, terjemahan kenyah-indonesia, aplikasi kamus dayak kenyah, bahasa suku dayak kenyah, translator bahasa dayak kenyah, kamus digital dayak kenyah, kosakata bahasa dayak kenyah, percakapan kenyah-indonesia, translate bahasa dayak kayan, bahasa dayak kalimantan timur, terjemahan bahasa dayak kenyah ke indonesia, kamus bahasa dayak lengkap, aplikasi terjemahan dayak kenyah, translate bahasa dayak nama saya, penerjemah online bahasa dayak kenyah, kamus dayak kaltim, translate bahasa lokal kalimantan timur, belajar bahasa dayak kenyah online gratis, kamus digital dayak kenyah kalimantan timur, cara translate bahasa dayak kenyah ke indonesia, aplikasi belajar bahasa dayak kenyah, kamus dayak kenyah terlengkap, percakapan sehari-hari bahasa dayak kenyah, translate kalimat indonesia ke dayak kenyah, kamus online bahasa lokal kalimantan timur'
+			/>
 			<header className="relative min-h-[320px] sm:min-h-[340px] flex items-center justify-center overflow-hidden text-white bg-black">
 				{/* Background pakai img (lebih LCP friendly) */}
 				<img

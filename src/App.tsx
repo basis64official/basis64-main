@@ -73,6 +73,14 @@ export default function App() {
     }).then(() => console.log("Google Ads loaded"));
   }, []);
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Ini memastikan bahwa setiap kali URL berubah, 
+    // browser melakukan reset atau fokus ulang ke metadata.
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
 
   useEffect(() => {
     // cek session

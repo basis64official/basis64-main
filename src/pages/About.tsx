@@ -1,9 +1,15 @@
 import Logo from '../assets/img/logo.webp';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function About() {
   return (
     <>
+      <SEO
+        name="Tentang BASIS-64 | Platform SaaS & Penerjemah Dayak Kenyah"
+        description="Pelajari lebih lanjut tentang BASIS-64, platform SaaS masa depan dan penyedia teknologi penerjemah bahasa Dayak Kenyah berbasis konteks yang natural."
+        keys="tentang basis-64, profil basis-64, teknologi penerjemah dayak, saas indonesia, kamus dayak kenyah modern"
+      />
       {/* Hero Section */}
       <header className="relative min-h-[320px] sm:min-h-[240px] flex items-center mt-6 justify-center text-white overflow-hidden bg-gray-50 dark:bg-neutral-950">
         <div className="relative z-10 text-center px-6 sm:px-12">

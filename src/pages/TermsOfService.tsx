@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function TermsOfService() {
+  <SEO
+    name="Terms of Service | BASIS-64"
+    description="Syarat dan ketentuan penggunaan layanan BASIS-64. Baca aturan mengenai penggunaan yang wajar, hak kekayaan intelektual, dan kebijakan iklan kami."
+    keys="terms of service basis-64, syarat dan ketentuan, aturan penggunaan basis-64, disclaimer terjemahan"
+  />
   return (
     <main className="px-6 py-8 mt-4 mx-4 bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white rounded-md shadow-sm">
       <h1 className="text-3xl font-extrabold mb-6">Terms of Service</h1>

@@ -4,6 +4,7 @@ import useInput from "../hooks/useInput";
 import useModal from "../state/useModal";
 import { apiFetch } from "../api/apiFetch";
 import { CookieManager } from "../utils/CookieManager";
+import SEO from "../components/SEO";
 
 export default function Feedback() {
   const [name, onNameChange] = useInput("");
@@ -43,72 +44,79 @@ export default function Feedback() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      {/* Header Card */}
-      <div className="text-center mb-8">
-        <h2
-          className="text-3xl font-bold text-gray-900 dark:text-white"
-          data-i18n="pages.feedback.contentTitle"
-        >
-          Berikan Kami Feedback
-        </h2>
-        <p
-          className="mt-2 text-gray-600 dark:text-gray-400"
-          data-i18n="pages.feedback.contentDescription"
-        >
-          Kami sangat menghargai masukan, saran, atau bug report dari kamu 🚀
-        </p>
-        <blockquote className="mt-4 text-gray-500 dark:text-gray-400 italic">
-          <p>"Your opinion won’t go to <code>/dev/null</code>"</p>
-        </blockquote>
-      </div>
-
-      {/* Form Card */}
-      <div className="rounded-md border border-gray-300 dark:border-neutral-700 bg-white/80 dark:bg-neutral-900 shadow-sm p-6 sm:p-10">
-        <div className="mb-6">
-          <Input
-            id="inputName"
-            label="Nama"
-            value={name}
-            placeholder="Nama kamu"
-            required
-            onChange={onNameChange}
-            dataI18n="pages.feedback.name"
-            dataI18nPlaceholder="pages.feedback.name"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label
-            htmlFor="feedback-message"
-            className="block mb-2 text-base font-medium dark:text-white"
-            data-i18n="pages.feedback.message"
+    <>
+      <SEO
+        name="Feedback & Saran | BASIS-64"
+        description="Bantu kami mengembangkan BASIS-64 menjadi lebih baik. Kirimkan saran, masukan, atau laporan bug Anda langsung kepada pengembang."
+        keys="feedback basis-64, saran aplikasi, bug report basis-64, pengembangan penerjemah dayak"
+      />
+      <div className="container mx-auto px-4 py-10">
+        {/* Header Card */}
+        <div className="text-center mb-8">
+          <h2
+            className="text-3xl font-bold text-gray-900 dark:text-white"
+            data-i18n="pages.feedback.contentTitle"
           >
-            Pesan
-          </label>
-          <textarea
-            id="feedback-message"
-            value={message}
-            onChange={onMessageChange}
-            rows={5}
-            className="w-full rounded-md border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 p-2.5 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            placeholder="Ketik pesan kamu di sini..."
-            data-i18n-placeholder="pages.feedback.messagePlaceholder"
-            required
-          />
+            Berikan Kami Feedback
+          </h2>
+          <p
+            className="mt-2 text-gray-600 dark:text-gray-400"
+            data-i18n="pages.feedback.contentDescription"
+          >
+            Kami sangat menghargai masukan, saran, atau bug report dari kamu 🚀
+          </p>
+          <blockquote className="mt-4 text-gray-500 dark:text-gray-400 italic">
+            <p>"Your opinion won’t go to <code>/dev/null</code>"</p>
+          </blockquote>
         </div>
 
-        <div className="flex justify-end">
-          <Button
-            onClick={submitHandler}
-            variant="blue"
-            type="submit"
-            className="w-full sm:w-auto"
-          >
-            Kirim
-          </Button>
+        {/* Form Card */}
+        <div className="rounded-md border border-gray-300 dark:border-neutral-700 bg-white/80 dark:bg-neutral-900 shadow-sm p-6 sm:p-10">
+          <div className="mb-6">
+            <Input
+              id="inputName"
+              label="Nama"
+              value={name}
+              placeholder="Nama kamu"
+              required
+              onChange={onNameChange}
+              dataI18n="pages.feedback.name"
+              dataI18nPlaceholder="pages.feedback.name"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="feedback-message"
+              className="block mb-2 text-base font-medium dark:text-white"
+              data-i18n="pages.feedback.message"
+            >
+              Pesan
+            </label>
+            <textarea
+              id="feedback-message"
+              value={message}
+              onChange={onMessageChange}
+              rows={5}
+              className="w-full rounded-md border border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-800 p-2.5 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Ketik pesan kamu di sini..."
+              data-i18n-placeholder="pages.feedback.messagePlaceholder"
+              required
+            />
+          </div>
+
+          <div className="flex justify-end">
+            <Button
+              onClick={submitHandler}
+              variant="blue"
+              type="submit"
+              className="w-full sm:w-auto"
+            >
+              Kirim
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
