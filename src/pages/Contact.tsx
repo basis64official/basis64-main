@@ -25,20 +25,20 @@ const Contact = () => {
             <div className='mb-4'>
               <h1 className='text-lg mb-2'>Email: official@basis64.com</h1>
               <h1 className='text-lg mb-2'>Whatsapp: +62 822-1150-9216</h1>
-              <h1 className='text-lg mb-2'>Instagram: @basis64computer</h1>
+              <h1 className='text-lg mb-2'>Instagram: @mrgart64</h1>
               <h1 className='text-lg mb-2'>Discord: <a href='https://discord.gg/gywRbyK8VN/' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://discord.gg/gywRbyK8VN/</a></h1>
-              <h1 className='text-lg mb-2'>Telegram: <a href='https://t.me/basis64computer' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://t.me/basis64computer/</a></h1>
+              {/* <h1 className='text-lg mb-2'>Telegram: <a href='https://t.me/basis64computer' target='_blank' className='font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline'>https://t.me/basis64computer/</a></h1> */}
             </div>
             <div className='grid sm:grid-cols-2'>
               <Button as='a' href="https://wa.me/+6282211509216" variant="whatsapp" className="mr-4 mb-4">
                 <i className="bi bi-whatsapp mr-2"></i> Hubungi melalui WhatsApp
               </Button>
-              <Button as='a' href="https://www.instagram.com/basis64computer" variant="instagram" className="mr-4 mb-4">
-                <i className="bi bi-instagram mr-2"></i> Lihat Instagram kami
+              <Button as='a' href="https://www.instagram.com/mrgart64" variant="instagram" className="mr-4 mb-4">
+                <i className="bi bi-instagram mr-2"></i> Lihat Instagram kami @mrgart64
               </Button>
-              <Button as='a' href="https://www.instagram.com/basis64computer/" variant="blue" className="mr-4 mb-4">
+              {/* <Button as='a' href="https://www.telegram.org/basis64computer/" variant="blue" className="mr-4 mb-4">
                 <i className="bi bi-telegram mr-2"></i> Chat melalui Telegram
-              </Button>
+              </Button> */}
               <Button as='a' href="https://discord.gg/gywRbyK8VN/" variant="discord" className="mr-4 mb-4">
                 <i className="bi bi-discord mr-2"></i> Bergabung ke Discord
               </Button>

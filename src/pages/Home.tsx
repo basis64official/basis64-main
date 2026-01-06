@@ -45,7 +45,7 @@ export default function Home() {
 					</h1>
 					<p className="mt-3 text-base sm:text-lg text-gray-300 leading-relaxed">
 						<span className='hidden sm:flex text-center justify-center'>
-							BASIS-64 adalah SaaS berbasis AI untuk menerjemahkan bahasa Dayak Kenyah secara instan.
+							BASIS-64 menyediakan layanan penerjemahkan bahasa Dayak Kenyah secara instan.
 						</span>
 						Bantu kami dengan menggunakan penerjemah Dayak Kenyah BASIS-64 agar layanan penerjemahan kami semakin akurat, kami selalu update sesuai perkembangan teknologi.
 					</p>

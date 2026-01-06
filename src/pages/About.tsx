@@ -7,7 +7,7 @@ export default function About() {
     <>
       <SEO
         name="Tentang BASIS-64 | Platform SaaS & Penerjemah Dayak Kenyah"
-        description="Pelajari lebih lanjut tentang BASIS-64, platform SaaS masa depan dan penyedia teknologi penerjemah bahasa Dayak Kenyah berbasis konteks yang natural."
+        description="Pelajari lebih lanjut tentang BASIS-64, platform SaaS masa depan dan penyedia teknologi penerjemah bahasa Dayak Kenyah."
         keys="tentang basis-64, profil basis-64, teknologi penerjemah dayak, saas indonesia, kamus dayak kenyah modern"
       />
       {/* Hero Section */}
@@ -33,18 +33,18 @@ export default function About() {
           {/* About Box */}
           <div className="bg-white border border-gray-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white rounded-md p-6 mx-auto text-gray-700 shadow-xs transition duration-300 max-w-3xl">
             <p className="mb-4">
-              BASIS-64 adalah platform SaaS (Software as a Service) dan juga penyedia layanan web.
+              BASIS-64 adalah platform layanan berbasis web.
             </p>
             <p className="mb-4">
-              Salah satu proyek kami adalah penerjemah bahasa Dayak Kenyah. Penerjemah ini mampu memahami konteks kalimat dan menyusun ulang kata, misalnya:
+              Salah satu proyek kami adalah penerjemah yang dapat menerjemahkan bahasa Dayak Kenyah, misalnya:
             </p>
             <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
               <li>"saya seorang guru" → "ca guru keq"</li>
               <li>"sudahkah kamu makan" → "lepe ne ikoq uman"</li>
             </ul>
-            <p>
+            {/* <p>
               Berbeda dengan penerjemah lama yang hanya mengganti kata per kata, BASIS-64 fokus pada pemahaman konteks untuk hasil terjemahan yang lebih natural.
-            </p>
+            </p> */}
           </div>
 
           {/* Contact & Privacy */}
