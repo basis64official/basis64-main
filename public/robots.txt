@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Daftarkan sitemap Anda di sini
 Sitemap: https://basis64.com/sitemap.xml
