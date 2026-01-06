@@ -4,16 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.css'
 import App from './App.tsx'
-import { HelmetProvider } from 'react-helmet-async';
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 )
 
