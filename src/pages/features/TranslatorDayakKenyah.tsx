@@ -14,7 +14,7 @@ export default function TranslatorDayakKenyah() {
     }, []);
 
     const URL =
-        "https://dayak-kenyah-translator.basis64computer.workers.dev";
+        "https://dayak-kenyah-translator.basis64.com";
     const [switchLanguage, setSwitchLanguage] = useState(false);
     const [translateInput, setTranslateInput] = useState("");
     const [translateOutput, setTranslateOutput] = useState("");
@@ -202,7 +202,7 @@ export default function TranslatorDayakKenyah() {
         // Ambil potongan teks saat ini
         const textToRead = audioQueue[currentAudioIndex];
         const audioUrl =
-            `https://gtts.basis64computer.workers.dev/translate_tts?ie=UTF-8&tl=id-ID&client=tw-ob&q=` +
+            `https://gtts.basis64.com/translate_tts?ie=UTF-8&tl=id-ID&client=tw-ob&q=` +
             encodeURI(textToRead);
 
         const audio = new Audio(audioUrl);
